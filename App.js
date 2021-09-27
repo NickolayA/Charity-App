@@ -1,8 +1,9 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {ThemeProvider} from 'styled-components/native';
+import {theme} from './Theme';
 
 const App = () => {
-  return null;
+  return <ThemeProvider theme={theme}></ThemeProvider>;
 };
 
 export default App;
