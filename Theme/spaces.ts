@@ -1,0 +1,1 @@
+export const spaces: Array<string> = ["12px"];
