@@ -5,11 +5,11 @@ import {createAppNavigationScreenOptions} from './options/appNavigationOptions';
 
 import {RouteNames} from '../Constants';
 
-import {HomeScreen} from '../screens/Home';
-import {AccountsScreen} from '../screens/Accounts';
-import {GivingScreen} from '../screens/Giving';
-import {PaymentsScreen} from '../screens/Payments';
-import {CardsScreen} from '../screens/Cards';
+import {HomeContainer} from '../screens/Home';
+import {AccountsContainer} from '../screens/Accounts';
+import {GivingContainer} from '../screens/Giving';
+import {PaymentsContainer} from '../screens/Payments';
+import {CardsContainer} from '../screens/Cards';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,11 +20,11 @@ export const AppNavigation: React.FC = () => {
       screenOptions={createAppNavigationScreenOptions}
       backBehavior="initialRoute"
       tabBar={props => <BlurredBottomTabBar bottomTabBarProps={props} />}>
-      <Tab.Screen name={RouteNames.Home} component={HomeScreen} />
-      <Tab.Screen name={RouteNames.Accounts} component={AccountsScreen} />
-      <Tab.Screen name={RouteNames.Giving} component={GivingScreen} />
-      <Tab.Screen name={RouteNames.Payments} component={PaymentsScreen} />
-      <Tab.Screen name={RouteNames.Cards} component={CardsScreen} />
+      <Tab.Screen name={RouteNames.Home} component={HomeContainer} />
+      <Tab.Screen name={RouteNames.Accounts} component={AccountsContainer} />
+      <Tab.Screen name={RouteNames.Giving} component={GivingContainer} />
+      <Tab.Screen name={RouteNames.Payments} component={PaymentsContainer} />
+      <Tab.Screen name={RouteNames.Cards} component={CardsContainer} />
     </Tab.Navigator>
   );
 };
