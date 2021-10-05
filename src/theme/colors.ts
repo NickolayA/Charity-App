@@ -5,6 +5,9 @@ export type Colors = {
   bg: {
       [key: string]: string;
   },
+  border: {
+    [key: string]: string
+  },
   text: {
       [key: string]: string;
   }
@@ -16,9 +19,16 @@ export const colors: Colors = {
     primary: '#ffffff',
   },
   bg: {
-      primary: '#d6306a'
+      primary: '#d6306a',
+      secondary: '#ffffff',
+      transparent: 'transparent'
+  },
+  border: {
+    primary: '#aeaeae'
   },
   text: {
-      primary: '#ffffff'
+      primary: '#ffffff',
+      secondary: '#5b5b5b',
+      error: '#d6306a'
   }
 };
