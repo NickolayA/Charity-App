@@ -20,7 +20,11 @@ const UserMenuContent = styled(ListItem)`
   width: 100px;
 `;
 
-export const UserAvatar: React.FC = () => {
+interface UserAvatarProps {
+  signOut: () => void;
+}
+
+export const UserAvatar: React.FC<UserAvatarProps> = ({signOut}) => {
   const [userMenuVisible, setUserMenuVisible] = useState(false);
 
   const hideUserMenu = () => {
@@ -39,7 +43,7 @@ export const UserAvatar: React.FC = () => {
         </TouchableWithoutFeedback>
         <UserMenuContent>
           <ListItem.Content>
-            <ListItem.Title>Log out</ListItem.Title>
+            <ListItem.Title onPress={signOut}>Log out</ListItem.Title>
           </ListItem.Content>
         </UserMenuContent>
       </Modal>

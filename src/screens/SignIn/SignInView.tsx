@@ -1,5 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {Animated, Keyboard, KeyboardEvent, View} from 'react-native';
+import {Animated, Keyboard, KeyboardEvent} from 'react-native';
 import {Input} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {AuthStates} from '../../Constants';
@@ -41,7 +41,10 @@ export const SignInView: React.FC<SignInViewProps> = ({
       }).start();
     });
     Keyboard.addListener('keyboardDidHide', (e: KeyboardEvent) =>
-      Animated.timing(signInButtonTranslate, {toValue: 0, useNativeDriver: true}).start(),
+      Animated.timing(signInButtonTranslate, {
+        toValue: 0,
+        useNativeDriver: true,
+      }).start(),
     );
     return () => {
       Keyboard.removeAllListeners('keyboardDidShow');
