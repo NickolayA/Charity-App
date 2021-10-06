@@ -20,3 +20,8 @@ export enum AuthStates {
     Logging = "logging",
     NoAuth = ""
 }
+
+export enum CardImageTypes {
+  Image = "image",
+  Video = "video"
+}
