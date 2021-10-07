@@ -3,8 +3,6 @@ import {View, Image, TouchableOpacity} from 'react-native';
 import {UserAvatar} from './UserAvatar';
 import styled from 'styled-components/native';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
-import {signOut} from '../redux/action-creators';
 
 import {RouteNames} from '../Constants';
 
@@ -26,7 +24,6 @@ const ScreenControlWrapper = styled(TouchableOpacity)`
 export const Header: React.FC = ({children}) => {
   const navigation = useNavigation();
   const route = useRoute();
-  const dispatch = useDispatch();
 
   return (
     <HeaderWrapper>
@@ -40,7 +37,7 @@ export const Header: React.FC = ({children}) => {
         </ScreenControlWrapper>
       )}
       {children}
-      <UserAvatar signOut={() => dispatch(signOut())} />
+      <UserAvatar/>
     </HeaderWrapper>
   );
 };

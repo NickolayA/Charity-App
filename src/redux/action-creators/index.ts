@@ -2,7 +2,7 @@ import {AuthActionType} from '../action-types';
 import {Dispatch} from 'redux';
 import {AuthAction} from '../actions';
 
-export const signIn = (
+export const signInActionCreator = (
   email: string,
   password: string,
   signInService: (email: string, password: string) => Promise<string>,
@@ -14,7 +14,7 @@ export const signIn = (
   };
 };
 
-export const signOut = () => {
+export const signOutActionCreator = () => {
   return (dispatch: Dispatch<AuthAction>) => {
     dispatch({type: AuthActionType.SIGNOUT});
   };
