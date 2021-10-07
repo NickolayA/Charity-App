@@ -3,7 +3,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {CheckingContainer} from '../screens/Checking';
 import {SavingsContainer} from '../screens/Savings';
 import {AppNavigation} from './AppNavigation';
-
 import {RouteNames} from '../Constants';
 
 const Stack = createStackNavigator();

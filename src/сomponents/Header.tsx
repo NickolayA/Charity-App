@@ -4,7 +4,7 @@ import {UserAvatar} from './UserAvatar';
 import styled from 'styled-components/native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 
-import { RouteNames } from '../Constants';
+import {RouteNames} from '../Constants';
 
 import HamburgerMenuIcon from '../assets/images/burgerMenuIcon.png';
 import BackButtonIcon from '../assets/images/back.png';
@@ -13,8 +13,8 @@ const HeaderWrapper = styled(View)`
   background-color: ${({theme}) => theme.colors.bg.primary};
   flex-direction: row;
   justify-content: space-between;
-  padding-horizontal: ${({theme}) => theme.spaces[0]};
-  padding-bottom: ${({theme}) => theme.spaces[0]};
+  padding-horizontal: ${({theme}) => theme.spaces[1]};
+  padding-bottom: ${({theme}) => theme.spaces[1]};
 `;
 
 const ScreenControlWrapper = styled(TouchableOpacity)`
@@ -37,7 +37,7 @@ export const Header: React.FC = ({children}) => {
         </ScreenControlWrapper>
       )}
       {children}
-      <UserAvatar />
+      <UserAvatar/>
     </HeaderWrapper>
   );
 };
