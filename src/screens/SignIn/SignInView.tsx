@@ -1,5 +1,5 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {Animated, Keyboard, KeyboardEvent} from 'react-native';
+import React from 'react';
+import {Animated} from 'react-native';
 import {Input} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {AuthStates} from '../../Constants';
@@ -20,38 +20,20 @@ import {
 } from './styling';
 
 interface SignInViewProps {
-  onSignIn: (email: string, password: string) => void;
+  onSignIn: () => void;
   authState: string;
+  animationControl: Animated.Value;
+  updateEmail: (newEmail: string) => void;
+  updatePassword: (newPassword: string) => void;
 }
 
 export const SignInView: React.FC<SignInViewProps> = ({
   onSignIn,
   authState,
+  animationControl,
+  updateEmail,
+  updatePassword,
 }) => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-
-  const signInButtonTranslate = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    Keyboard.addListener('keyboardDidShow', (e: KeyboardEvent) => {
-      Animated.timing(signInButtonTranslate, {
-        toValue: -100,
-        useNativeDriver: true,
-      }).start();
-    });
-    Keyboard.addListener('keyboardDidHide', (e: KeyboardEvent) =>
-      Animated.timing(signInButtonTranslate, {
-        toValue: 0,
-        useNativeDriver: true,
-      }).start(),
-    );
-    return () => {
-      Keyboard.removeAllListeners('keyboardDidShow');
-      Keyboard.removeAllListeners('keyboardDidHide');
-    };
-  }, []);
-
   return (
     <SignInWrapper>
       <SignInScreenLabelUnderscore>
@@ -61,7 +43,7 @@ export const SignInView: React.FC<SignInViewProps> = ({
         <Input
           label={<SignInLabel>Email</SignInLabel>}
           placeholder="Your email address"
-          onChangeText={setEmail}
+          onChangeText={updateEmail}
           autoCapitalize="none"
           keyboardType="email-address"
         />
@@ -69,7 +51,7 @@ export const SignInView: React.FC<SignInViewProps> = ({
           label={<SignInLabel>Password</SignInLabel>}
           placeholder="Password"
           secureTextEntry
-          onChangeText={setPassword}
+          onChangeText={updatePassword}
           autoCapitalize="none"
         />
         <RestorePasswordButton title="FORGOT PASSWORD" />
@@ -79,11 +61,11 @@ export const SignInView: React.FC<SignInViewProps> = ({
       </SignInFormWrapper>
       <SignInButtonsWrapper>
         <AnimatedSignInButtonContainer
-          style={{transform: [{translateY: signInButtonTranslate}]}}>
+          style={{transform: [{translateY: animationControl}]}}>
           <SignInButton
             loading={authState === AuthStates.Logging}
             title="LOGIN"
-            onPress={() => onSignIn(email, password)}
+            onPress={() => onSignIn()}
           />
         </AnimatedSignInButtonContainer>
         <AdditionalLoginMethodsMessage>

@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {TouchableWithoutFeedback, Modal, View, Platform} from 'react-native';
 import {Avatar, ListItem} from 'react-native-elements';
 import styled from 'styled-components/native';
+import {useDispatch} from 'react-redux';
+import {signOutActionCreator} from '../redux/action-creators';
 
 import AvatarIcon from '../assets/images/oval.png';
 
@@ -20,11 +22,9 @@ const UserMenuContent = styled(ListItem)`
   width: 100px;
 `;
 
-interface UserAvatarProps {
-  signOut: () => void;
-}
+export const UserAvatar: React.FC = () => {
+  const dispatch = useDispatch();
 
-export const UserAvatar: React.FC<UserAvatarProps> = ({signOut}) => {
   const [userMenuVisible, setUserMenuVisible] = useState(false);
 
   const hideUserMenu = () => {
@@ -43,7 +43,7 @@ export const UserAvatar: React.FC<UserAvatarProps> = ({signOut}) => {
         </TouchableWithoutFeedback>
         <UserMenuContent>
           <ListItem.Content>
-            <ListItem.Title onPress={signOut}>Log out</ListItem.Title>
+            <ListItem.Title onPress={() => dispatch(signOutActionCreator())}>Log out</ListItem.Title>
           </ListItem.Content>
         </UserMenuContent>
       </Modal>

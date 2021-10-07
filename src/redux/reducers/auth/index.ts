@@ -2,7 +2,10 @@ import {AuthActionType} from '../../action-types';
 import {AuthAction} from '../../actions/index';
 import {AuthStates} from '../../../Constants';
 
-export const authReducer = (state: string = AuthStates.NoAuth, action: AuthAction): string => {
+export const authReducer = (
+  state: string = AuthStates.NoAuth,
+  action: AuthAction,
+): string => {
   switch (action.type) {
     case AuthActionType.SIGNIN:
       return action.payload;
