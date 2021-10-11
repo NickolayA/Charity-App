@@ -1,23 +1,22 @@
-import React from 'react';
-import {Text, Image} from 'react-native';
-import {Button, Card} from 'react-native-elements';
+import React, {useRef, useImperativeHandle} from 'react';
+import {Image} from 'react-native';
+import {Button} from 'react-native-elements';
 import styled from 'styled-components/native';
-import {CardImageTypes, FontFamilyVariants} from '../../Constants';
+import {CardSourceTypes, FontFamilyVariants} from '../../Constants';
 import {CardWrapper} from '../CardWrapper';
 import {CardTopBar} from './CardTopBar';
-
 import {CardTopBarProps} from './CardTopBar';
 import {CardMainImage, CardMainImageProps} from './CardMainImage';
 
-import AvatarIcon from '../../assets/images/avatar.png';
 import ActionButtonIcon from '../../assets/images/shareArrow.png';
 
-interface GoodnessCardProps extends CardTopBarProps, CardMainImageProps {
+export type GoodnessCardProps = {
   actionButtonTitle: string;
   cardDescribingText: string;
-  cardImageType: string;
+  sourceType: CardSourceTypes;
   buttonAction?: () => void;
-}
+} & CardTopBarProps &
+  CardMainImageProps;
 
 const CardDescribingText = styled.Text`
   font-size: ${({theme}) => parseInt(theme.sizes[2]) - 1}px;
@@ -32,34 +31,49 @@ const CardActionButton = styled(Button).attrs(({theme}) => ({
     width: '80%',
     alignSelf: 'center',
     borderRadius: 40,
-    paddingVertical: parseInt(theme.spaces[1]) + 5
+    paddingVertical: parseInt(theme.spaces[1]) + 3,
   },
   titleStyle: {
     fontFamily: FontFamilyVariants.Regular,
     fontSize: parseInt(theme.sizes[1]) + 5,
-    marginLeft: parseInt(theme.spaces[0])
+    marginLeft: parseInt(theme.spaces[0]),
   },
 }))``;
 
-const cardTopBarData: CardTopBarProps = {
-  title: 'Your Giving Impact',
-  avatarIcon: AvatarIcon,
-  charityName: 'St Jude',
-  time: '4 hrs ago',
-};
+const Spacer = styled.View`
+  height: ${({theme}) => theme.sizes[2]};
+`;
 
-export const GoodnessCard: React.FC<GoodnessCardProps> = ({
-  actionButtonTitle = 'Share to spread the world', // TODO remove
-  cardDescribingText = 'Danny, Your donation helped 5 amazing kids get much needed cancer surgery, thanks for being amazing!',
-  cardImageType = CardImageTypes.Image,
-  buttonAction,
-}) => {
-  return (
-    <CardWrapper>
-      <CardTopBar {...cardTopBarData} />
-      <CardMainImage />
-      <CardDescribingText>{cardDescribingText}</CardDescribingText>
-      <CardActionButton icon={<Image source={ActionButtonIcon} />} title={actionButtonTitle} onPress={buttonAction} />
-    </CardWrapper>
-  );
-};
+export const GoodnessCard: React.FC<GoodnessCardProps> = React.forwardRef(
+  ({
+    avatarIcon,
+    title,
+    charityName,
+    time,
+    actionButtonTitle,
+    cardDescribingText,
+    image,
+    video,
+    sourceType,
+    buttonAction,
+  }, ref) => {
+    return (
+      <CardWrapper>
+        <CardTopBar
+          avatarIcon={avatarIcon}
+          title={title}
+          charityName={charityName}
+          time={time}
+        />
+        <CardMainImage image={image} video={video} sourceType={sourceType} ref={ref}/>
+        <CardDescribingText>{cardDescribingText}</CardDescribingText>
+        <CardActionButton
+          icon={<Image source={ActionButtonIcon} />}
+          title={actionButtonTitle}
+          onPress={buttonAction}
+        />
+        <Spacer />
+      </CardWrapper>
+    );
+  },
+);

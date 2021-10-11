@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import {Text} from 'react-native';
 import {getLocalization} from '../services/localization';
 import {FontFamilyVariants} from '../Constants';
 
@@ -18,13 +19,15 @@ const formatToCurrencyString = (
   currencyName: string,
 ): string => {
   const locale = getLocalization();
-  return parseInt(Math.floor(amount).toFixed())
-    .toLocaleString(locale, {style: 'currency', currency: currencyName, minimumFractionDigits: 0});
+  return parseInt(Math.floor(amount).toFixed()).toLocaleString(locale, {
+    style: 'currency',
+    currency: currencyName,
+    minimumFractionDigits: 0,
+  });
 };
 
-const CashTitleWrapper = styled.View`
-  flex-direction: row;
-  align-items: baseline;
+const CashTitleWrapper = styled.Text`
+  include-font-padding: false;
 `;
 
 export const CashTitle: React.FC<CashTitleProps> = ({
@@ -47,8 +50,10 @@ export const CashTitle: React.FC<CashTitleProps> = ({
 
   return (
     <CashTitleWrapper>
+  
       <IntegerAmountPart>{integerAmount}</IntegerAmountPart>
       <DecimalAmountPart>.{decimalAmount}</DecimalAmountPart>
+      
     </CashTitleWrapper>
   );
 };

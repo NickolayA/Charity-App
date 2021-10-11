@@ -6,7 +6,7 @@ import {CardListItem} from '../CardListItem';
 import {CardTitle} from '../CardTitle';
 import {CardSubtitle} from '../CardSubtitle';
 
-// avatar+title+charity name+time
+
 export interface CardTopBarProps {
   avatarIcon?: ImageSourcePropType;
   title: string;
@@ -28,10 +28,10 @@ const CardSubtitleWrapper = styled.View`
 `;
 
 export const CardTopBar: React.FC<CardTopBarProps> = ({
-  avatarIcon,
   title,
   charityName,
   time,
+  avatarIcon
 }) => {
   return (
     <CardListItem>

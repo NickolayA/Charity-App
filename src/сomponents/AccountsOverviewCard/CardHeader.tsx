@@ -6,10 +6,10 @@ import {CardTitle} from '../CardTitle';
 import {CardSubtitle} from '../CardSubtitle';
 import {CardListItem} from '../CardListItem';
 
-interface CardHeaderProps {
+export interface CardHeaderProps {
   title: string;
   subtitle: string;
-  amount: number;
+  amount?: number;
 }
 
 const Spacer = styled.View`

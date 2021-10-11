@@ -1,51 +1,30 @@
-import React from 'react';
-import {ImageSourcePropType} from 'react-native';
+import React, {useRef} from 'react';
+import {View, Text} from 'react-native';
 import {Divider} from 'react-native-elements';
 import {CardWrapper} from '../CardWrapper';
-import {CardRow} from './CardRow';
+import {CardRow, CardRowProps} from '../CardRow';
+import {CardHeader, CardHeaderProps} from './CardHeader';
 
-import HeartIcon from '../../assets/images/heart.png';
-import {CardHeader} from './CardHeader';
-
-interface AccountsOverviewCardProps {
-  navigation?: any;
-}
-
-export const AccountsOverviewCard: React.FC<AccountsOverviewCardProps> = ({
-  navigation,
-}) => {
-  const title: string = 'Checking';
-  const subtitle: string = 'Main account (...0353)';
-  const amount: number = 5000.2;
-  const icon: ImageSourcePropType = HeartIcon;
-  const action = () => navigation.navigate('Accounts');
-
-  const cardRowData: {
-    title: string;
-    subtitle: string;
-    amount: number;
-    icon: ImageSourcePropType;
-    action: () => void;
-  } = {
-    title,
-    subtitle,
-    amount,
-    icon,
-    action,
-  };
-
-  return (
-    <CardWrapper>
-      <CardHeader
-        title="Accouts Overview"
-        amount={7000.8}
-        subtitle="Total Available cash"
-      />
-      <CardRow {...cardRowData} action={action} />
-      <Divider />
-      <CardRow {...cardRowData} />
-      <Divider />
-      <CardRow {...cardRowData} />
-    </CardWrapper>
-  );
+export type AccountsOverviewCardProps = CardHeaderProps & {
+  cashes: Array<CardRowProps>;
 };
+
+export const AccountsOverviewCard: React.FC<AccountsOverviewCardProps> =
+  React.forwardRef(({title, subtitle, amount, cashes}, ref) => {
+    const cachesArrLength = cashes.length;
+
+    return (
+      <CardWrapper ref={el => ref.current.push(el)}>
+        <CardHeader title={title} amount={amount} subtitle={subtitle} />
+
+        {cashes.map((cash, index) => {
+          return (
+            <View>
+              <CardRow {...cash} key={index + cash.title} />
+              {cachesArrLength - 1 !== index && <Divider />}
+            </View>
+          );
+        })}
+      </CardWrapper>
+    );
+  });
