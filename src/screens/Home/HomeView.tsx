@@ -22,7 +22,10 @@ const {height} = Dimensions.get('window');
 
 const HomeViewFlatList = styled(FlatList).attrs({
   contentContainerStyle: {
-    paddingBottom: Platform.OS === 'android' ? 20 : height / 4,
+    paddingBottom: Platform.OS === 'android' ? height / 12 : height / 4,
+  },
+  ListHeaderComponentStyle: {
+    marginBottom: 10,
   },
 })`
   margin-horizontal: ${({theme}) => theme.spaces[1]};
@@ -40,7 +43,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         <Image source={HeartLogo} />
       </Header>
       <HomeViewFlatList
-        pagingEnabled={false}
+        pagingEnabled={true}
         onViewableItemsChanged={onItemsChanged}
         ListHeaderComponent={
           <GreetingByDateIndicator userFirstName={userFirstName} />

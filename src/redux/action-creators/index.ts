@@ -22,8 +22,8 @@ export const signOutActionCreator = () => {
 
 export const playActionCreator = (videoCardIndex: number) => {
   return {type: VideoCardsType.PLAY, payload: videoCardIndex};
-}
+};
 
 export const pauseActionCreator = (videoCardIndex: number) => {
   return {type: VideoCardsType.PAUSE, payload: videoCardIndex};
-}
+};

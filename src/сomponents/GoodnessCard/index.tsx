@@ -44,19 +44,22 @@ const Spacer = styled.View`
   height: ${({theme}) => theme.sizes[2]};
 `;
 
-export const GoodnessCard: React.FC<GoodnessCardProps> = ({
-  avatarIcon,
-  title,
-  charityName,
-  time,
-  actionButtonTitle,
-  cardDescribingText,
-  image,
-  video,
-  sourceType,
-  buttonAction,
-  paused,
-}) => {
+export const GoodnessCard: React.FC<GoodnessCardProps> = (
+  {
+    avatarIcon,
+    title,
+    charityName,
+    time,
+    actionButtonTitle,
+    cardDescribingText,
+    image,
+    video,
+    sourceType,
+    buttonAction,
+    paused,
+  },
+  ref,
+) => {
   return (
     <CardWrapper>
       <CardTopBar

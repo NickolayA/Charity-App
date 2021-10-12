@@ -16,12 +16,12 @@ interface LoggingAction {
 export type AuthAction = SignInAction | SignOutAction | LoggingAction;
 
 interface PlayAction {
-  type: VideoCardsType.PLAY,
+  type: VideoCardsType.PLAY;
   payload: number;
 }
 
 interface PauseAction {
-  type: VideoCardsType.PAUSE,
+  type: VideoCardsType.PAUSE;
   payload: number;
 }
 

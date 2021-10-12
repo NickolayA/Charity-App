@@ -30,6 +30,7 @@ const GreetingByDateIndicatorContent = styled.Text`
   color: ${({theme}) => theme.colors.text.secondary};
   font-family: ${FontFamilyVariants.Regular};  
   margin-top: 20px;
+  include-font-padding: false;
 `;
 
 export const GreetingByDateIndicator: React.FC<{userFirstName: string}> = ({

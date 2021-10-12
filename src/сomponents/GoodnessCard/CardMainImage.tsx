@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react';
 import {ImageSourcePropType, Image, TouchableOpacity} from 'react-native';
-import Video, {VideoProperties} from 'react-native-video';
+import Video from 'react-native-video';
 import styled from 'styled-components/native';
 import {CardSourceTypes} from '../../Constants';
 
@@ -18,6 +18,10 @@ const TouchableVideoDynamic = styled.TouchableOpacity`
   bottom: 20px;
   right: 20px;
   z-index: 2;
+`;
+
+const CardVideo = styled(Video)`
+  height: 207px;
 `;
 
 export const CardMainImage: React.FC<CardMainImageProps> = ({
@@ -39,9 +43,8 @@ export const CardMainImage: React.FC<CardMainImageProps> = ({
       <TouchableVideoDynamic onPress={() => setMute(mute => !mute)}>
         <Image source={PlayIcon} width={10} height={10} />
       </TouchableVideoDynamic>
-      <Video
+      <CardVideo
         source={video}
-        style={{height: 207}}
         ref={ref => {
           videoRef = ref;
         }}

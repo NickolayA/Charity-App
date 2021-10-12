@@ -50,10 +50,8 @@ export const CashTitle: React.FC<CashTitleProps> = ({
 
   return (
     <CashTitleWrapper>
-  
       <IntegerAmountPart>{integerAmount}</IntegerAmountPart>
       <DecimalAmountPart>.{decimalAmount}</DecimalAmountPart>
-      
     </CashTitleWrapper>
   );
 };
