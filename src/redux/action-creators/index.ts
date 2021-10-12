@@ -1,4 +1,4 @@
-import {AuthActionType} from '../action-types';
+import {AuthActionType, VideoCardsType} from '../action-types';
 import {Dispatch} from 'redux';
 import {AuthAction} from '../actions';
 
@@ -19,3 +19,11 @@ export const signOutActionCreator = () => {
     dispatch({type: AuthActionType.SIGNOUT});
   };
 };
+
+export const playActionCreator = (videoCardIndex: number) => {
+  return {type: VideoCardsType.PLAY, payload: videoCardIndex};
+}
+
+export const pauseActionCreator = (videoCardIndex: number) => {
+  return {type: VideoCardsType.PAUSE, payload: videoCardIndex};
+}

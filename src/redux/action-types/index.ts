@@ -3,3 +3,8 @@ export enum AuthActionType {
     SIGNOUT = "signOut",
     LOGGING = "logging"
 }
+
+export enum VideoCardsType {
+    PLAY = "play",
+    PAUSE = "pause"
+}
