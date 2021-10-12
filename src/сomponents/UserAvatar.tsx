@@ -43,7 +43,9 @@ export const UserAvatar: React.FC = () => {
         </TouchableWithoutFeedback>
         <UserMenuContent>
           <ListItem.Content>
-            <ListItem.Title onPress={() => dispatch(signOutActionCreator())}>Log out</ListItem.Title>
+            <ListItem.Title onPress={() => dispatch(signOutActionCreator())}>
+              Log out
+            </ListItem.Title>
           </ListItem.Content>
         </UserMenuContent>
       </Modal>

@@ -12,8 +12,6 @@ export interface CardHeaderProps {
   amount?: number;
 }
 
-const x = 3;
-
 const Spacer = styled.View`
     margin-top: ${({theme}) => theme.spaces[0]};
 `;

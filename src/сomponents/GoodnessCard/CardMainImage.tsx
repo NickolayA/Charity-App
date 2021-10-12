@@ -1,6 +1,12 @@
 import React, {useRef, useState} from 'react';
-import {ImageSourcePropType, Image, TouchableOpacity} from 'react-native';
+import {
+  ImageSourcePropType,
+  Image,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 import Video from 'react-native-video';
+import {VideoPlayerAndroid} from '../VideoPlayerAndroid';
 import styled from 'styled-components/native';
 import {CardSourceTypes} from '../../Constants';
 
@@ -30,28 +36,49 @@ export const CardMainImage: React.FC<CardMainImageProps> = ({
   sourceType,
   paused,
 }) => {
-  const [mute, setMute] = useState<boolean>(true);
-  let videoRef = useRef<Video>();
+  const [muted, setMuted] = useState<boolean>(true);
+  const [fullScreen, setFullScreen] = useState<boolean>(false);
+  const [controls, setControls] = useState<boolean>(false);
+
+  let videoRef = useRef();
 
   return sourceType === CardSourceTypes.Image ? (
     <Image source={image} />
   ) : (
     <TouchableOpacity
       onPress={() => {
-        videoRef.presentFullscreenPlayer();
+        if (Platform.OS === 'android') {
+          setFullScreen(true);
+          setControls(true);
+        } else {
+          videoRef.presentFullscreenPlayer();
+        }
       }}>
-      <TouchableVideoDynamic onPress={() => setMute(mute => !mute)}>
+      <TouchableVideoDynamic onPress={() => setMuted(muted => !muted)}>
         <Image source={PlayIcon} width={10} height={10} />
       </TouchableVideoDynamic>
-      <CardVideo
-        source={video}
-        ref={ref => {
-          videoRef = ref;
-        }}
-        muted={mute}
-        paused={paused}
-        resizeMode="cover"
-      />
+
+      {Platform.OS === 'ios' ? (
+        <CardVideo
+          source={video}
+          setMuted={setMuted}
+          muted={muted}
+          paused={paused}
+          resizeMode="contain"
+          ref={ref => (videoRef = ref)}
+        />
+      ) : (
+        <VideoPlayerAndroid
+          source={video}
+          setMuted={setMuted}
+          fullScreen={fullScreen}
+          setFullScreen={setFullScreen}
+          controls={controls}
+          muted={muted}
+          paused={paused}
+          resizeMode="contain"
+        />
+      )}
     </TouchableOpacity>
   );
 };

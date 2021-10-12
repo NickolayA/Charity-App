@@ -21,7 +21,8 @@ export const colors: Colors = {
   bg: {
       primary: '#d6306a',
       secondary: '#ffffff',
-      transparent: 'transparent'
+      transparent: 'transparent',
+      black: '#000000'
   },
   border: {
     primary: '#aeaeae'
