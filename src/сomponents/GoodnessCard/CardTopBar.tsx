@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import {ImageSourcePropType} from 'react-native';
-import {ListItem, Avatar, Divider} from 'react-native-elements';
+import {ListItem, Avatar} from 'react-native-elements';
 import {CardListItem} from '../CardListItem';
 import {CardTitle} from '../CardTitle';
 import {CardSubtitle} from '../CardSubtitle';
-
 
 export interface CardTopBarProps {
   avatarIcon?: ImageSourcePropType;
@@ -16,22 +15,22 @@ export interface CardTopBarProps {
 
 const SubtitleDivider = styled.View`
   background-color: ${({theme}) => theme.colors.bg.primary};
-  align-self: center;  
+  align-self: center;
   width: 3px;
-  height: 3px;  
+  height: 3px;
   border-radius: 3px;
   margin-horizontal: 3px;
 `;
 
 const CardSubtitleWrapper = styled.View`
-    flex-direction: row;
+  flex-direction: row;
 `;
 
 export const CardTopBar: React.FC<CardTopBarProps> = ({
   title,
   charityName,
   time,
-  avatarIcon
+  avatarIcon,
 }) => {
   return (
     <CardListItem>

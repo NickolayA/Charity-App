@@ -7,13 +7,14 @@ import {CashTitle} from './CashTitle';
 import {CardSubtitle} from './CardSubtitle';
 import {CardListItem} from './CardListItem';
 import {CardTitle} from './CardTitle';
+import { useNavigation } from '@react-navigation/core';
 
 export interface CardRowProps {
   title: string;
   subtitle: string;
   amount: number;
   icon?: ImageSourcePropType;
-  action?: () => void;
+  action?: (navigation: any) => void;
 }
 
 const CardRowLeftPartContent = styled(ListItem.Content)`
@@ -38,9 +39,10 @@ export const CardRow: React.FC<CardRowProps> = ({
   children,
 }) => {
   const theme = useContext<Theme>(ThemeContext);
-  // TODO Fix children appearance
+  const navigation = useNavigation();
+
   return (
-    <CardListItem onPress={action}>
+    <CardListItem onPress={() => action(navigation)}>
       <CardRowLeftPartContent>
         <CardRowTitleContainer>
           <CardTitle>{title}</CardTitle>

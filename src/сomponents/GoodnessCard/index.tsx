@@ -1,4 +1,4 @@
-import React, {useRef, useImperativeHandle} from 'react';
+import React from 'react';
 import {Image} from 'react-native';
 import {Button} from 'react-native-elements';
 import styled from 'styled-components/native';
@@ -44,36 +44,40 @@ const Spacer = styled.View`
   height: ${({theme}) => theme.sizes[2]};
 `;
 
-export const GoodnessCard: React.FC<GoodnessCardProps> = React.forwardRef(
-  ({
-    avatarIcon,
-    title,
-    charityName,
-    time,
-    actionButtonTitle,
-    cardDescribingText,
-    image,
-    video,
-    sourceType,
-    buttonAction,
-  }, ref) => {
-    return (
-      <CardWrapper>
-        <CardTopBar
-          avatarIcon={avatarIcon}
-          title={title}
-          charityName={charityName}
-          time={time}
-        />
-        <CardMainImage image={image} video={video} sourceType={sourceType} ref={ref}/>
-        <CardDescribingText>{cardDescribingText}</CardDescribingText>
-        <CardActionButton
-          icon={<Image source={ActionButtonIcon} />}
-          title={actionButtonTitle}
-          onPress={buttonAction}
-        />
-        <Spacer />
-      </CardWrapper>
-    );
-  },
-);
+export const GoodnessCard: React.FC<GoodnessCardProps> = ({
+  avatarIcon,
+  title,
+  charityName,
+  time,
+  actionButtonTitle,
+  cardDescribingText,
+  image,
+  video,
+  sourceType,
+  buttonAction,
+  paused,
+}) => {
+  return (
+    <CardWrapper>
+      <CardTopBar
+        avatarIcon={avatarIcon}
+        title={title}
+        charityName={charityName}
+        time={time}
+      />
+      <CardMainImage
+        image={image}
+        video={video}
+        sourceType={sourceType}
+        paused={paused}
+      />
+      <CardDescribingText>{cardDescribingText}</CardDescribingText>
+      <CardActionButton
+        icon={<Image source={ActionButtonIcon} />}
+        title={actionButtonTitle}
+        onPress={buttonAction}
+      />
+      <Spacer />
+    </CardWrapper>
+  );
+};
