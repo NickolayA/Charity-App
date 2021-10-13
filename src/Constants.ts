@@ -16,7 +16,17 @@ export enum FontFamilyVariants {
 }
 
 export enum AuthStates {
-    AuthFail = "authFail",
-    Logging = "logging",
-    NoAuth = ""
+  AuthFail = 'authFail',
+  Logging = 'logging',
+  NoAuth = '',
+}
+
+export enum CardSourceTypes {
+  Image,
+  Video,
+}
+
+export enum CardTypes {
+  AccountsOverviewCard,
+  GoodnessCard,
 }
