@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components/native';
 import {ImageSourcePropType} from 'react-native';
 import {ListItem, Avatar} from 'react-native-elements';
-import {CardListItem} from '../CardListItem';
-import {CardTitle} from '../CardTitle';
-import {CardSubtitle} from '../CardSubtitle';
+import {CardListItem} from '../../CardListItem';
+import {CardTitle} from '../../CardTitle';
+import {CardSubtitle} from '../../CardSubtitle';
 
 export interface CardTopBarProps {
   avatarIcon?: ImageSourcePropType;

@@ -1,13 +1,13 @@
 import React from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
-import {UserAvatar} from './UserAvatar';
+import {UserAvatar} from '../UserAvatar';
 import styled from 'styled-components/native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 
-import {RouteNames} from '../Constants';
+import {RouteNames} from '../../Constants';
 
-import HamburgerMenuIcon from '../assets/images/burgerMenuIcon.png';
-import BackButtonIcon from '../assets/images/back.png';
+import HamburgerMenuIcon from '../../assets/images/burgerMenuIcon.png';
+import BackButtonIcon from '../../assets/images/back.png';
 
 const HeaderWrapper = styled(View)`
   background-color: ${({theme}) => theme.colors.bg.primary};

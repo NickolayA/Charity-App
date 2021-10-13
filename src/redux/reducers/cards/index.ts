@@ -30,13 +30,13 @@ const testData: CardsType = [
         title: 'Checking',
         subtitle: 'Main account (...0353)',
         amount: 1500.2,
-        action: navigation => navigation.navigate(RouteNames.Accounts),
+        action: navigation => navigation.navigate(RouteNames.Checking, {checking: {subtitle: 'Main account (...0353)'}}),
       },
       {
         title: 'Savings',
         subtitle: 'Buy a house (...4044)',
         amount: 5000.2,
-        action: navigation => navigation.navigate(RouteNames.Accounts),
+        action: navigation => navigation.navigate(RouteNames.Savings, {saving: {subtitle: 'Buy a house (...4044)'}}),
       },
       {
         title: 'Goodness',

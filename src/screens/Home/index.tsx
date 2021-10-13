@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, {useCallback} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {ScreenContainerModel} from '../../models/ScreenContainerModel';
 import {HomeView} from './HomeView';
@@ -10,11 +10,13 @@ import {GoodnessCard, GoodnessCardProps} from '../../сomponents/GoodnessCard';
 import {CardTypes} from '../../Constants';
 import {State} from '../../redux/reducers';
 import {CardsType} from '../../redux/reducers/cards';
-import { pauseActionCreator, playActionCreator } from '../../redux/action-creators';
+import {
+  pauseActionCreator,
+  playActionCreator,
+} from '../../redux/action-creators';
 
 export const HomeContainer: React.FC<ScreenContainerModel> = () => {
   const cardsState = useSelector<State, CardsType>(state => state.cards);
-
 
   const dispatch = useDispatch();
 

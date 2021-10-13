@@ -6,9 +6,9 @@ import {
   Platform,
 } from 'react-native';
 import Video from 'react-native-video';
-import {VideoPlayerAndroid} from '../VideoPlayerAndroid';
+import {VideoPlayerAndroid} from '../../VideoPlayerAndroid';
 import styled from 'styled-components/native';
-import {CardSourceTypes} from '../../Constants';
+import {CardSourceTypes} from '../../../Constants';
 
 export interface CardMainImageProps {
   image: ImageSourcePropType;
@@ -17,7 +17,7 @@ export interface CardMainImageProps {
   paused?: boolean;
 }
 
-import PlayIcon from '../../assets/images/play.png';
+import PlayIcon from '../../../assets/images/play.png';
 
 const TouchableVideoDynamic = styled.TouchableOpacity`
   position: absolute;

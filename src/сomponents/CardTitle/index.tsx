@@ -1,6 +1,6 @@
 import {ListItem} from 'react-native-elements';
 import styled from 'styled-components/native';
-import { FontFamilyVariants } from '../Constants';
+import { FontFamilyVariants } from '../../Constants';
 
 export const CardTitle = styled(ListItem.Title)`
 font-family: ${FontFamilyVariants.Regular};

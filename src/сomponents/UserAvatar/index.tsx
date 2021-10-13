@@ -3,9 +3,9 @@ import {TouchableWithoutFeedback, Modal, View, Platform} from 'react-native';
 import {Avatar, ListItem} from 'react-native-elements';
 import styled from 'styled-components/native';
 import {useDispatch} from 'react-redux';
-import {signOutActionCreator} from '../redux/action-creators';
+import {signOutActionCreator} from '../../redux/action-creators';
 
-import AvatarIcon from '../assets/images/oval.png';
+import AvatarIcon from '../../assets/images/oval.png';
 
 const UserMenuOverlay = styled(View)`
   position: absolute;

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import {Text} from 'react-native';
-import {getLocalization} from '../services/localization';
-import {FontFamilyVariants} from '../Constants';
+import {getLocalization} from '../../services/localization';
+import {FontFamilyVariants} from '../../Constants';
 
 interface CashTitleProps {
   currencyName: string;

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import {ListItem} from 'react-native-elements';
-import {CashTitle} from '../CashTitle';
-import {CardTitle} from '../CardTitle';
-import {CardSubtitle} from '../CardSubtitle';
-import {CardListItem} from '../CardListItem';
+import {CashTitle} from '../../CashTitle';
+import {CardTitle} from '../../CardTitle';
+import {CardSubtitle} from '../../CardSubtitle';
+import {CardListItem} from '../../CardListItem';
 
 export interface CardHeaderProps {
   title: string;

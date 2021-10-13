@@ -2,11 +2,11 @@ import React, {useContext} from 'react';
 import {ImageSourcePropType} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import styled, {ThemeContext} from 'styled-components/native';
-import {Theme} from '../theme';
-import {CashTitle} from './CashTitle';
-import {CardSubtitle} from './CardSubtitle';
-import {CardListItem} from './CardListItem';
-import {CardTitle} from './CardTitle';
+import {Theme} from '../../theme';
+import {CashTitle} from '../CashTitle';
+import {CardSubtitle} from '../CardSubtitle';
+import {CardListItem} from '../CardListItem';
+import {CardTitle} from '../CardTitle';
 import { useNavigation } from '@react-navigation/core';
 
 export interface CardRowProps {
@@ -42,7 +42,7 @@ export const CardRow: React.FC<CardRowProps> = ({
   const navigation = useNavigation();
 
   return (
-    <CardListItem onPress={() => action(navigation)}>
+    <CardListItem onPress={action && (() => action(navigation))}>
       <CardRowLeftPartContent>
         <CardRowTitleContainer>
           <CardTitle>{title}</CardTitle>

@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import styled from 'styled-components/native';
-import { FontFamilyVariants } from '../Constants';
+import { FontFamilyVariants } from '../../Constants';
 
 enum GreetingTypes {
   Morning = 'Good Morning',

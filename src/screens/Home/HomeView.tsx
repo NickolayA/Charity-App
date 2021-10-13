@@ -5,7 +5,7 @@ import {Header} from '../../сomponents/Header';
 import {ScreenContainer} from '../../сomponents/ScreenContainer';
 import {CardTypes} from '../../Constants';
 import {AccountsOverviewCardProps} from '../../сomponents/AccountsOverviewCard';
-import {GreetingByDateIndicator} from '../../сomponents/GreetingByDateIndicator';
+import {GreetingByDateIndicator} from '../../сomponents/GreetingByDateIndicator/GreetingByDateIndicator';
 import {GoodnessCardProps} from '../../сomponents/GoodnessCard';
 
 import HeartLogo from '../../assets/images/logo.png';
@@ -22,7 +22,7 @@ const {height} = Dimensions.get('window');
 
 const HomeViewFlatList = styled(FlatList).attrs({
   contentContainerStyle: {
-    paddingBottom: Platform.OS === 'android' ? height / 12 : height / 4,
+    paddingBottom: Platform.OS === 'android' ? height / 6 : height / 4,
   },
   ListHeaderComponentStyle: {
     marginBottom: 10,

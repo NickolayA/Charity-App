@@ -1,5 +1,5 @@
 import React from 'react';
-import {Platform, View, Modal, TouchableOpacity} from 'react-native';
+import {TouchableWithoutFeedback, View, Modal} from 'react-native';
 import Video from 'react-native-video';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -15,7 +15,7 @@ const VideoScreen = styled(Video)`
 `;
 
 const ControlButtonsWrapper = styled.View`
-  flex: 0.07;
+  flex: 0.5;
   background-color: ${({theme}) => theme.colors.bg.black};
 `;
 
@@ -45,23 +45,22 @@ export const VideoPlayerAndroid: React.FC<VideoPlayerProps> = props => {
     return (
       <Modal>
         <ControlButtonsWrapper>
-          <TouchableOpacity
-            style={{borderColor: 'green', borderWidth: 2, width: 20}}
+          <TouchableWithoutFeedback
             onPress={() => props.setMuted(muted => !muted)}>
             <AudioControlButton
               name={props.muted ? 'volume-mute-outline' : 'volume-high-outline'}
               size={30}
             />
-          </TouchableOpacity>
+          </TouchableWithoutFeedback>
 
-          <TouchableOpacity
+          <TouchableWithoutFeedback
             onPress={() => {
               props.setFullScreen(false);
             }}>
             <FullScreenControlButton
               name="close-outline"
               size={30}></FullScreenControlButton>
-          </TouchableOpacity>
+          </TouchableWithoutFeedback>
         </ControlButtonsWrapper>
 
         <VideoPlayerFullScreenBG>
