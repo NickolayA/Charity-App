@@ -14,9 +14,10 @@ import {CardsContainer} from '../screens/Cards';
 const Tab = createBottomTabNavigator();
 
 export const AppNavigation: React.FC = () => {
+  // TODO change initial route name to Home route
   return (
     <Tab.Navigator
-      initialRouteName={RouteNames.Home}
+      initialRouteName={RouteNames.Profile}
       screenOptions={createAppNavigationScreenOptions}
       backBehavior="initialRoute"
       tabBar={props => <BlurredBottomTabBar bottomTabBarProps={props} />}>

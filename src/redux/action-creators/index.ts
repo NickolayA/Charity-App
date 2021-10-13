@@ -1,6 +1,11 @@
-import {AuthActionType, VideoCardsType} from '../action-types';
+import {
+  AuthActionType,
+  VideoCardsType,
+  ProfileActionType,
+} from '../action-types';
 import {Dispatch} from 'redux';
 import {AuthAction} from '../actions';
+import {ProfileType} from '../reducers/profile';
 
 export const signInActionCreator = (
   email: string,
@@ -26,4 +31,8 @@ export const playActionCreator = (videoCardIndex: number) => {
 
 export const pauseActionCreator = (videoCardIndex: number) => {
   return {type: VideoCardsType.PAUSE, payload: videoCardIndex};
+};
+
+export const updateProfileDataActionCreator = (newData: ProfileType) => {
+  return {type: ProfileActionType.UPDATE, payload: newData};
 };

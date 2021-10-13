@@ -8,3 +8,7 @@ export enum VideoCardsType {
   PLAY = 'play',
   PAUSE = 'pause',
 }
+
+export enum ProfileActionType {
+  UPDATE = 'update'
+}

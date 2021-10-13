@@ -4,6 +4,9 @@ import {Avatar, ListItem} from 'react-native-elements';
 import styled from 'styled-components/native';
 import {useDispatch} from 'react-redux';
 import {signOutActionCreator} from '../../redux/action-creators';
+import {Divider} from 'react-native-elements/dist/divider/Divider';
+import {useNavigation} from '@react-navigation/core';
+import {RouteNames} from '../../Constants';
 
 import AvatarIcon from '../../assets/images/oval.png';
 
@@ -23,6 +26,7 @@ const UserMenuContent = styled(ListItem)`
 `;
 
 export const UserAvatar: React.FC = () => {
+  const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const [userMenuVisible, setUserMenuVisible] = useState(false);
@@ -43,6 +47,13 @@ export const UserAvatar: React.FC = () => {
         </TouchableWithoutFeedback>
         <UserMenuContent>
           <ListItem.Content>
+            <ListItem.Title
+              onPress={() => {
+                navigation.navigate(RouteNames.Profile);
+                hideUserMenu();
+              }}>
+              Profile
+            </ListItem.Title>
             <ListItem.Title onPress={() => dispatch(signOutActionCreator())}>
               Log out
             </ListItem.Title>
