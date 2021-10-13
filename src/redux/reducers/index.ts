@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  blacklist: ['cards', 'profile'],
+  blacklist: ['cards'],
 };
 
 const reducers = combineReducers({auth: authReducer, cards: cardsReducer, profile: profileReducer});

@@ -1,4 +1,8 @@
-import {AuthActionType, ProfileActionType, VideoCardsType} from '../action-types';
+import {
+  AuthActionType,
+  ProfileActionType,
+  VideoCardsType,
+} from '../action-types';
 
 interface SignInAction {
   type: AuthActionType.SIGNIN;

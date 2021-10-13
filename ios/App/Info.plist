@@ -58,5 +58,7 @@
 		<string>SFRounded-Regular.ttf</string>
 		<string>Ionicons.ttf</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<key>NSCameraUsageDescription</key>
 </dict>
 </plist>

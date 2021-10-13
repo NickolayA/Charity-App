@@ -10,5 +10,5 @@ export enum VideoCardsType {
 }
 
 export enum ProfileActionType {
-  UPDATE = 'update'
+  UPDATE = 'update',
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions} from 'react-native';
+import {Dimensions, Modal} from 'react-native';
 import styled from 'styled-components/native';
 import {Avatar, Button, Input} from 'react-native-elements';
 import moment from 'moment';
@@ -10,17 +10,27 @@ import {Header} from '../../сomponents/Header';
 import {ScreenContainer} from '../../сomponents/ScreenContainer';
 import {ScreenTitle} from '../../сomponents/ScreenTitle';
 import {FontFamilyVariants} from '../../Constants';
+import {RNCamera} from 'react-native-camera';
+
+import Icon from 'react-native-vector-icons/Ionicons';
 
 type ProfileViewProps = ScreenViewModel & {
   data: ProfileType;
   isEditMode: boolean;
   activateEditMode: () => void;
   deactivateEditMode: () => void;
-  setAvatar: any;
+  changeAvatarFromFileSystem: () => Promise<void>;
+  changeAvatarFromCamera: () => Promise<void>;
+  avatar: any;
   fullName: string;
   setFullName: any;
+  dateOfBirth: number;
   changeDateOfBirth: any;
-  onApplyUpdates: any;
+  onApplyUpdates: () => void;
+  onDiscardUpdates: () => void;
+  cameraRef: any;
+  showCamera: boolean;
+  revealCamera: () => void;
 };
 
 const {width} = Dimensions.get('window');
@@ -39,6 +49,7 @@ const DataWrapper = styled.View`
 
 const AvatarWrapper = styled.View`
   align-self: center;
+  align-items: center;
 `;
 
 const DataLabel = styled.Text`
@@ -50,17 +61,17 @@ const DataItem = DataLabel;
 
 const ProfileViewButtonsWrapper = styled.View`
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   width: 100%;
-`;
-
-const ProfileViewRow = styled.View`
-  align-items: center;
-  width: ${width / 1.2}px;
+  margin-vertical: ${({theme}) => theme.spaces[1]};
 `;
 
 const ProfileViewButton = styled(Button).attrs(({theme}) => ({
-  containerStyle: {width: '40%', borderRadius: parseInt(theme.sizes[1])},
+  containerStyle: {
+    width: '40%',
+    borderRadius: parseInt(theme.sizes[1]),
+    margin: 0,
+  },
   titleStyle: {
     fontFamily: FontFamilyVariants.Regular,
   },
@@ -69,16 +80,28 @@ const ProfileViewButton = styled(Button).attrs(({theme}) => ({
   },
 }))``;
 
+const ProfileViewRow = styled.View`
+  align-items: center;
+  width: ${width / 1.2}px;
+`;
+
 export const ProfileView: React.FC<ProfileViewProps> = ({
   screenTitle,
   data,
   isEditMode,
   activateEditMode,
-  deactivateEditMode,
-  setAvatar,
+  changeAvatarFromFileSystem,
+  changeAvatarFromCamera,
+  avatar,
+  fullName,
   setFullName,
+  dateOfBirth,
   changeDateOfBirth,
-  onApplyUpdates
+  onApplyUpdates,
+  onDiscardUpdates,
+  cameraRef,
+  showCamera,
+  revealCamera,
 }) => {
   return (
     <ScreenContainer>
@@ -88,12 +111,49 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
       <ProfileViewWrapper>
         <DataWrapper>
           <AvatarWrapper>
-            <Avatar source={data.avatar} size={150} />
+            <Avatar
+              source={typeof avatar === 'number' ? avatar : {uri: avatar}}
+              rounded
+              size={150}
+            />
+            {isEditMode && (
+              <ProfileViewButtonsWrapper>
+                <ProfileViewButton
+                  onPress={changeAvatarFromFileSystem}
+                  icon={<Icon name="folder-outline" color="white" size={30} />}
+                />
+                <ProfileViewButton
+                  onPress={revealCamera}
+                  icon={<Icon name="camera-outline" color="white" size={30} />}
+                />
+                {showCamera && (
+                  <Modal>
+                    <RNCamera
+                      ref={cameraRef}
+                      captureAudio={false}
+                      style={{flex: 1}}
+                    />
+                    <ProfileViewButtonsWrapper>
+                      <ProfileViewButton
+                        icon={
+                          <Icon name="camera-outline" color="white" size={30} />
+                        }
+                        onPress={changeAvatarFromCamera}
+                      />
+                    </ProfileViewButtonsWrapper>
+                  </Modal>
+                )}
+              </ProfileViewButtonsWrapper>
+            )}
           </AvatarWrapper>
           <ProfileViewRow>
             <DataLabel>Full name: </DataLabel>
             {isEditMode ? (
-              <Input placeholder="Full name" onChangeText={setFullName} value={data.fullName}/>
+              <Input
+                placeholder="Full name"
+                onChangeText={setFullName}
+                value={fullName}
+              />
             ) : (
               <DataItem>{data.fullName}</DataItem>
             )}
@@ -103,7 +163,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
             {isEditMode ? (
               <DatePicker
                 mode="date"
-                date={moment(data.dateOfBirth).toDate()}
+                date={moment(dateOfBirth).toDate()}
                 onDateChange={changeDateOfBirth}
               />
             ) : (
@@ -120,11 +180,8 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
           </ProfileViewButtonsWrapper>
         ) : (
           <ProfileViewButtonsWrapper>
-            <ProfileViewButton
-              title="Apply updates"
-              onPress={onApplyUpdates}
-            />
-            <ProfileViewButton title="Cancel" onPress={deactivateEditMode} />
+            <ProfileViewButton title="Apply updates" onPress={onApplyUpdates} />
+            <ProfileViewButton title="Cancel" onPress={onDiscardUpdates} />
           </ProfileViewButtonsWrapper>
         )}
       </ProfileViewWrapper>
