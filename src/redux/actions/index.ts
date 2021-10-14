@@ -1,4 +1,8 @@
-import {AuthActionType, VideoCardsType} from '../action-types';
+import {
+  AuthActionType,
+  ProfileActionType,
+  VideoCardsType,
+} from '../action-types';
 
 interface SignInAction {
   type: AuthActionType.SIGNIN;
@@ -26,3 +30,10 @@ interface PauseAction {
 }
 
 export type VideoCardsAction = PlayAction | PauseAction;
+
+interface UpdateAction {
+  type: ProfileActionType.UPDATE;
+  payload: object;
+}
+
+export type ProfileAction = UpdateAction;

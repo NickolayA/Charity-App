@@ -7,6 +7,7 @@ export enum RouteNames {
   Checking = 'Checking',
   Savings = 'Savings',
   SignIn = 'SignIn',
+  Profile = 'Profile'
 }
 
 export enum FontFamilyVariants {

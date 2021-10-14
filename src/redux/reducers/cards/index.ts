@@ -1,5 +1,4 @@
 import {CardSourceTypes, CardTypes, RouteNames} from '../../../Constants';
-import {ScreenContainerModel} from '../../../models/ScreenContainerModel';
 import {AccountsOverviewCardProps} from '../../../сomponents/AccountsOverviewCard';
 import {GoodnessCardProps} from '../../../сomponents/GoodnessCard';
 import {VideoCardsType} from '../../action-types';

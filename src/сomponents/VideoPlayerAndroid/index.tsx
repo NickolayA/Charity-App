@@ -15,7 +15,7 @@ const VideoScreen = styled(Video)`
 `;
 
 const ControlButtonsWrapper = styled.View`
-  flex: 0.5;
+  flex: 0.08;
   background-color: ${({theme}) => theme.colors.bg.black};
 `;
 
