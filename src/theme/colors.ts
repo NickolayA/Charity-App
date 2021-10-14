@@ -30,6 +30,7 @@ export const colors: Colors = {
   text: {
       primary: '#ffffff',
       secondary: '#5b5b5b',
-      error: '#d6306a'
+      error: '#d6306a',
+      special: '#27bc64'
   }
 };

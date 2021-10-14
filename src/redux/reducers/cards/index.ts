@@ -8,6 +8,7 @@ import AvatarIcon from '../../../assets/images/avatar.png';
 import RectangleIcon from '../../../assets/images/rectangle.png';
 import Rectangle2Icon from '../../../assets/images/rectangle2.png';
 import Rectangle2Video from '../../../assets/videos/matrica-4-voskreshenie-russkiy-treyler-1.mp4';
+import HeartIcon from '../../../assets/images/heart.png';
 
 export type CardsType = Array<
   | (AccountsOverviewCardProps & {type: CardTypes})
@@ -36,11 +37,13 @@ const testData: CardsType = [
         subtitle: 'Buy a house (...4044)',
         amount: 5000.2,
         action: navigation => navigation.navigate(RouteNames.Savings, {saving: {subtitle: 'Buy a house (...4044)'}}),
+        specialMessage: 'Savings is up 3% from last month',
       },
       {
         title: 'Goodness',
         subtitle: 'Cash Rewards',
         amount: 500.4,
+        icon: HeartIcon
       },
     ],
   },

@@ -15,7 +15,20 @@ export interface CardRowProps {
   amount: number;
   icon?: ImageSourcePropType;
   action?: (navigation: any) => void;
+  showChevron?: boolean;
+  specialMessage?: string;
 }
+
+const CardRowWrapper = styled.View`
+  background-color: ${({theme}) => theme.colors.bg.secondary};
+  border-radius: ${({theme}) => theme.sizes[1]};
+`;
+const CardRowChildrenWrapper = styled.View`
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  margin-bottom: ${({theme}) => theme.spaces[1]};
+`;
 
 const CardRowLeftPartContent = styled(ListItem.Content)`
   flex: 0.5;
@@ -36,36 +49,40 @@ export const CardRow: React.FC<CardRowProps> = ({
   amount,
   icon,
   action,
+  showChevron = true,
   children,
 }) => {
   const theme = useContext<Theme>(ThemeContext);
   const navigation = useNavigation();
-
   return (
-    <CardListItem onPress={action && (() => action(navigation))}>
-      <CardRowLeftPartContent>
-        <CardRowTitleContainer>
-          <CardTitle>{title}</CardTitle>
-          {icon && <CardRowTitleIcon source={icon} width height />}
-        </CardRowTitleContainer>
-        <CardSubtitle numberOfLines={1} ellipsizedMode="tail">
-          {subtitle}
-        </CardSubtitle>
-      </CardRowLeftPartContent>
-      <ListItem.Content right>
-        <CardRowTitleContainer>
-          <CashTitle
-            currencyName="USD"
-            currencyAmount={amount}
-            size={theme.sizes[2]}
-          />
-          <ListItem.Chevron
-            color={theme.colors.icons.active}
-            size={parseInt(theme.sizes[3])}
-          />
-        </CardRowTitleContainer>
-      </ListItem.Content>
-      {children}
-    </CardListItem>
+    <CardRowWrapper>
+      <CardListItem onPress={action && (() => action(navigation))}>
+        <CardRowLeftPartContent>
+          <CardRowTitleContainer>
+            <CardTitle>{title}</CardTitle>
+            {icon && <CardRowTitleIcon source={icon} width height />}
+          </CardRowTitleContainer>
+          <CardSubtitle numberOfLines={1} ellipsizedMode="tail">
+            {subtitle}
+          </CardSubtitle>
+        </CardRowLeftPartContent>
+        <ListItem.Content right>
+          <CardRowTitleContainer>
+            <CashTitle
+              currencyName="USD"
+              currencyAmount={amount}
+              size={theme.sizes[2]}
+            />
+            {showChevron && (
+              <ListItem.Chevron
+                color={theme.colors.icons.active}
+                size={parseInt(theme.sizes[3])}
+              />
+            )}
+          </CardRowTitleContainer>
+        </ListItem.Content>
+      </CardListItem>
+      {children && <CardRowChildrenWrapper>{children}</CardRowChildrenWrapper>}
+    </CardRowWrapper>
   );
 };
