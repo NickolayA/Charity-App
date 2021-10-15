@@ -6,4 +6,6 @@ export const CardListItem = styled(ListItem).attrs(({theme}) => ({
     borderRadius: 10,
     backgroundColor: theme.colors.bg.transparent,
   },
+  activeOpacity: 1,
+  underlayColor: theme.colors.bg.gray
 }))``;

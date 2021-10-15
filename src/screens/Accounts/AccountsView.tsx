@@ -1,5 +1,4 @@
 import React from 'react';
-import {View, Text} from 'react-native';
 import styled from 'styled-components/native';
 import {Header} from '../../сomponents/Header';
 import {ScreenViewModel} from '../../models/ScreenViewModel';
@@ -63,19 +62,20 @@ export const AccountsView: React.FC<AccountsViewProps> = ({
       </Header>
       <CardHeader amount={data.amount} subtitle={data.subtitle} />
       <MoneyActionButtonsWrapper>
-        {circleButtonsData.map(circleButton => (
-          <MoneyActionButton {...circleButton} />
+        {circleButtonsData.map((circleButton, index) => (
+          <MoneyActionButton key={circleButton.subtitle + index} {...circleButton} />
         ))}
       </MoneyActionButtonsWrapper>
       {data.cashes.map((cash, index) => (
-        <AccountsCardRowWrapper>
-          <CardRow key={index + cash.title} {...cash}>
-            {cash.specialMessage && <Triangle />}
-            {cash.specialMessage && (
+        <AccountsCardRowWrapper key={index + cash.title}>
+          {cash.specialMessage ? (
+            <CardRow {...cash} cardRowHeight={90}>
+              <Triangle />
               <SpecialMessage> {cash.specialMessage}</SpecialMessage>
-            )}
-            {!cash.specialMessage && <View />}
-          </CardRow>
+            </CardRow>
+          ) : (
+            <CardRow {...cash} cardRowHeight={90} />
+          )}
         </AccountsCardRowWrapper>
       ))}
     </ScreenContainer>

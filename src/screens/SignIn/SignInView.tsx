@@ -1,5 +1,5 @@
 import React from 'react';
-import {Animated} from 'react-native';
+import {Animated, StatusBar} from 'react-native';
 import {Input} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {AuthStates} from '../../Constants';
@@ -85,6 +85,7 @@ export const SignInView: React.FC<SignInViewProps> = ({
           />
         </SignInButtonsSubWrapper>
       </SignInButtonsWrapper>
+      <StatusBar backgroundColor="white" barStyle="dark-content" />
     </SignInWrapper>
   );
 };

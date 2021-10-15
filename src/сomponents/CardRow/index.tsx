@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {ImageSourcePropType} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import styled, {ThemeContext} from 'styled-components/native';
@@ -7,7 +7,7 @@ import {CashTitle} from '../CashTitle';
 import {CardSubtitle} from '../CardSubtitle';
 import {CardListItem} from '../CardListItem';
 import {CardTitle} from '../CardTitle';
-import { useNavigation } from '@react-navigation/core';
+import {useNavigation} from '@react-navigation/core';
 
 export interface CardRowProps {
   title: string;
@@ -16,13 +16,16 @@ export interface CardRowProps {
   icon?: ImageSourcePropType;
   action?: (navigation: any) => void;
   showChevron?: boolean;
+  cardRowHeight?: number;
   specialMessage?: string;
 }
 
 const CardRowWrapper = styled.View`
   background-color: ${({theme}) => theme.colors.bg.secondary};
   border-radius: ${({theme}) => theme.sizes[1]};
+  justify-content: center;
 `;
+
 const CardRowChildrenWrapper = styled.View`
   flex-direction: row;
   justify-content: center;
@@ -50,13 +53,22 @@ export const CardRow: React.FC<CardRowProps> = ({
   icon,
   action,
   showChevron = true,
+  cardRowHeight,
   children,
 }) => {
+  const [isPressed, setIsPressed] = useState<boolean>(false);
   const theme = useContext<Theme>(ThemeContext);
   const navigation = useNavigation();
   return (
-    <CardRowWrapper>
-      <CardListItem onPress={action && (() => action(navigation))}>
+    <CardRowWrapper
+      style={[
+        cardRowHeight && {height: cardRowHeight},
+        isPressed && {backgroundColor: theme.colors.bg.gray},
+      ]}>
+      <CardListItem
+        onPress={action && (() => action(navigation))}
+        onPressIn={() => setIsPressed(true)}
+        onPressOut={() => setIsPressed(false)}>
         <CardRowLeftPartContent>
           <CardRowTitleContainer>
             <CardTitle>{title}</CardTitle>

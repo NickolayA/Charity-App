@@ -13,8 +13,10 @@ const HeaderWrapper = styled(View)`
   background-color: ${({theme}) => theme.colors.bg.primary};
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   padding-horizontal: ${({theme}) => theme.spaces[1]};
   padding-bottom: ${({theme}) => theme.spaces[1]};
+  height: 45px;
 `;
 
 const ScreenControlWrapper = styled(TouchableOpacity)`
@@ -37,7 +39,7 @@ export const Header: React.FC = ({children}) => {
         </ScreenControlWrapper>
       )}
       {children}
-      <UserAvatar/>
+      <UserAvatar />
     </HeaderWrapper>
   );
 };
