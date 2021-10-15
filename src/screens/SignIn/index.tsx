@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Keyboard, KeyboardEvent, Animated} from 'react-native';
+import {Keyboard, KeyboardEvent, Animated, Modal} from 'react-native';
 import {SignInView} from './SignInView';
 import {signInService} from '../../services/auth';
 import {useDispatch, useSelector} from 'react-redux';
@@ -14,7 +14,8 @@ export const SignInContainer = () => {
   const [password, setPassword] = useState<string>('');
 
   const updateEmail = (newEmail: string): void => setEmail(newEmail);
-  const updatePassword = (newPassword: string): void => setPassword(newPassword);
+  const updatePassword = (newPassword: string): void =>
+    setPassword(newPassword);
 
   const signInButtonTranslateAnim = useRef(new Animated.Value(0)).current;
 

@@ -1,5 +1,4 @@
-import React from 'react';
-import {Platform, Animated} from 'react-native';
+import {Platform, Animated, Dimensions} from 'react-native';
 import {Button} from 'react-native-elements';
 import {ScreenContainer} from '../../../сomponents/ScreenContainer';
 import styled from 'styled-components/native';
@@ -8,9 +7,13 @@ import {FontFamilyVariants} from '../../../Constants';
 export const SignInWrapper = styled(ScreenContainer)`
   justify-content: space-between;
   background-color: ${({theme}) => theme.colors.bg.secondary};
-  padding-top: ${({theme}) =>
-    Platform.OS === 'android' ? theme.spaces[3] : theme.spaces[5]};
   padding-bottom: ${({theme}) => theme.spaces[2]};
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  padding-top: ${Platform.OS === 'android' ? "30px" : "110px"};
 `;
 
 export const SignInScreenLabel = styled.Text`
@@ -57,7 +60,7 @@ export const AuthFailedMessage = styled.Text`
 
 export const SignInButtonsWrapper = styled.View`
   padding-horizontal: ${({theme}) => theme.spaces[2]};
-  flex: 0.9;
+  flex: 0.85;
   justify-content: space-between;
 `;
 
@@ -96,6 +99,7 @@ export const SignInButton = styled(Button).attrs(({theme}) => ({
     borderRadius: 25,
     paddingVertical: parseInt(theme.sizes[1]),
     transform: [{translateY: 100}],
+    height: 40,
   },
   disabledTitleStyle: {
     fontFamily: FontFamilyVariants.Regular,
@@ -108,5 +112,6 @@ export const SignInButton = styled(Button).attrs(({theme}) => ({
     borderColor: theme.colors.border.primary,
     paddingVertical: parseInt(theme.spaces[0]) - 3,
     transform: [{translateY: 0}],
+    height: 30,
   },
 }))``;

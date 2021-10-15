@@ -49,7 +49,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
           <GreetingByDateIndicator userFirstName={userFirstName} />
         }
         data={cards}
-        renderItem={item => renderFlatListItem(item)}></HomeViewFlatList>
+        renderItem={item => renderFlatListItem(item)} 
+        showsVerticalScrollIndicator={false}
+        />
     </ScreenContainer>
   );
 };
