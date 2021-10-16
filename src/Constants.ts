@@ -31,3 +31,9 @@ export enum CardTypes {
   AccountsOverviewCard,
   GoodnessCard,
 }
+
+export enum TransactionTypes {
+  Deposit,
+  SpecialDeposit,
+  Withdraw
+}
