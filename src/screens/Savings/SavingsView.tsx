@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components/native';
+import React, {useContext} from 'react';
+import styled, {ThemeContext} from 'styled-components/native';
 import {View, FlatList, Dimensions, Text} from 'react-native';
 import {Header} from '../../сomponents/Header';
 import {ScreenContainer} from '../../сomponents/ScreenContainer';
@@ -12,16 +12,20 @@ import {CardHeader} from '../../сomponents/CardHeader';
 import SavingsGraph from '../../assets/images/savingsGraphV2.png';
 import {SearchSection} from '../../сomponents/SearchSection';
 import {CardWrapper} from '../../сomponents/CardWrapper';
-import {TransactionsByDate} from '../../services/saving-account';
+import {
+  SavingAccountDataItem,
+  TransactionsByDate,
+} from '../../services/saving-account';
 import {Divider} from 'react-native-elements';
 import {FontFamilyVariants} from '../../Constants';
+import {CardRow} from '../../сomponents/CardRow';
+import {Theme} from '../../theme';
 
 export type SavingsViewProps = ScreenViewModel & {
   totalAvailableCash: number;
   totalInterest: number;
   goodnessPoints: number;
   transactions: TransactionsByDate;
-  renderFlatListItem: ({item}) => JSX.Element;
   filterHandler: (name: string) => void;
 };
 
@@ -62,6 +66,46 @@ const SavingsViewFlatList = styled(FlatList).attrs(({theme}) => ({
   },
 }))``;
 
+const renderFlatListItem =
+  (specialDepositColor: string) =>
+  ({
+    item,
+  }: {
+    item: {date: string; transactions: Array<SavingAccountDataItem>};
+  }): JSX.Element => {
+    const transactionsCount = item.transactions.length;
+
+    return (
+      <View>
+        <CardRow
+          title={'End day balance - ' + item.date}
+          amount={5000.0}
+          showChevron={false}
+          textSize={12}
+        />
+        <Divider />
+        {item.transactions.map((t, index) => {
+          return (
+            <View>
+              {
+                <CardRow
+                  key={t.depositType + index}
+                  title={t.depositType}
+                  subtitle={t.date}
+                  amount={t.amount}
+                  titleColor={specialDepositColor}
+                  amountColor={specialDepositColor}
+                  showChevron={false}
+                />
+              }
+              {index < transactionsCount - 1 && <Divider />}
+            </View>
+          );
+        })}
+      </View>
+    );
+  };
+
 export const SavingsView: React.FC<SavingsViewProps> = ({
   screenTitle,
   screenSubtitle,
@@ -69,9 +113,11 @@ export const SavingsView: React.FC<SavingsViewProps> = ({
   totalInterest,
   goodnessPoints,
   transactions,
-  renderFlatListItem,
   filterHandler,
 }) => {
+  const theme = useContext<Theme>(ThemeContext);
+  const specialDepositColor = theme.colors.text.special;
+
   return (
     <ScreenContainer>
       <Header>
@@ -104,7 +150,7 @@ export const SavingsView: React.FC<SavingsViewProps> = ({
         <CardWrapper>
           <SavingsViewFlatList
             data={transactions}
-            renderItem={renderFlatListItem}
+            renderItem={renderFlatListItem(specialDepositColor)}
             showsVerticalScrollIndicator={false}
             ItemSeparatorComponent={() => <Divider />}
           />
