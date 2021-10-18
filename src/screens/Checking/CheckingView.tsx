@@ -30,7 +30,7 @@ const CheckingViewFlatList = styled(FlatList).attrs(({theme}) => ({
     paddingBottom: height / 2,
   },
 }))`
-  background-color: ${({theme}) => theme.colors.bg.gray};
+  background-color: ${({theme}) => theme.colors.bg.navigation};
 `;
 
 const {height} = Dimensions.get('window');
