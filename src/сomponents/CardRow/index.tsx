@@ -11,11 +11,12 @@ import {useNavigation} from '@react-navigation/core';
 
 export interface CardRowProps {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   amount: number;
   titleColor?: string;
   subtitleColor?: string;
   amountColor?: string;
+  textSize?: number;
   leftSideIcon?: any;
   icon?: ImageSourcePropType;
   action?: (navigation: any) => void;
@@ -64,6 +65,7 @@ export const CardRow: React.FC<CardRowProps> = ({
   titleColor,
   subtitleColor,
   amountColor,
+  textSize,
   leftSideIcon,
   icon,
   action,
@@ -78,7 +80,7 @@ export const CardRow: React.FC<CardRowProps> = ({
     <CardRowWrapper
       style={[
         cardRowHeight && {height: cardRowHeight},
-        isPressed && {backgroundColor: theme.colors.bg.gray},
+        isPressed && {backgroundColor: theme.colors.bg.navigation},
       ]}>
       <CardListItem
         onPress={action && (() => action(navigation))}
@@ -88,17 +90,23 @@ export const CardRow: React.FC<CardRowProps> = ({
           {leftSideIcon && <CardRowLeftPartIcons source={leftSideIcon} />}
           <View>
             <CardRowTitleWrapper>
-              <CardTitle style={titleColor && {color: titleColor}}>
+              <CardTitle
+                style={[
+                  titleColor && {color: titleColor},
+                  textSize && {fontSize: textSize},
+                ]}>
                 {title}
               </CardTitle>
               {icon && <CardRowTitleIcon source={icon} width height />}
             </CardRowTitleWrapper>
-            <CardSubtitle
-              style={subtitleColor && {color: subtitleColor}}
-              numberOfLines={1}
-              ellipsizedMode="tail">
-              {subtitle}
-            </CardSubtitle>
+            {subtitle && (
+              <CardSubtitle
+                style={subtitleColor && {color: subtitleColor}}
+                numberOfLines={1}
+                ellipsizedMode="tail">
+                {subtitle}
+              </CardSubtitle>
+            )}
           </View>
         </CardRowLeftPartContent>
         <ListItem.Content right>
@@ -106,7 +114,7 @@ export const CardRow: React.FC<CardRowProps> = ({
             <CashTitle
               currencyName="USD"
               currencyAmount={amount}
-              size={theme.sizes[3]}
+              size={textSize ? textSize + 'px' : theme.sizes[3]}
               color={amountColor}
             />
             {showChevron && (

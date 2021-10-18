@@ -26,7 +26,7 @@ const CheckingViewWrapper = styled.View`
 
 const CheckingViewFlatList = styled(FlatList).attrs(({theme}) => ({
   contentContainerStyle: {
-    backgroundColor: theme.colors.bg.gray,
+    backgroundColor: theme.colors.bg.navigation,
     paddingBottom: height / 2,
   },
 }))`

@@ -3,6 +3,7 @@ import {
   VideoCardsType,
   ProfileActionType,
   CheckingAccountActionType,
+  SavingAccountActionType,
 } from '../action-types';
 import {Dispatch} from 'redux';
 import {AuthAction} from '../actions';
@@ -40,4 +41,8 @@ export const updateProfileDataActionCreator = (newData: ProfileType) => {
 
 export const searchByInputCheckingAccountActionCreator = (input: string) => {
   return {type: CheckingAccountActionType.SEARCH_BY_INPUT, payload: input};
+};
+
+export const searchByInputSavingAccountActionCreator = (input: string) => {
+  return {type: SavingAccountActionType.SEARCH_BY_INPUT, payload: input};
 };

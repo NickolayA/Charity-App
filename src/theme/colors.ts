@@ -1,16 +1,16 @@
 export type Colors = {
   icons: {
     [key: string]: string;
-  },
+  };
   bg: {
-      [key: string]: string;
-  },
+    [key: string]: string;
+  };
   border: {
-    [key: string]: string
-  },
+    [key: string]: string;
+  };
   text: {
-      [key: string]: string;
-  }
+    [key: string]: string;
+  };
 };
 
 export const colors: Colors = {
@@ -19,19 +19,20 @@ export const colors: Colors = {
     primary: '#ffffff',
   },
   bg: {
-      primary: '#d6306a',
-      secondary: '#ffffff',
-      transparent: 'transparent',
-      black: '#000000',
-      gray: '#f2f2f2'
+    primary: '#d6306a',
+    secondary: '#ffffff',
+    transparent: 'transparent',
+    black: '#000000',
+    gray: '#f2f2f2',
+    navigation: '#F6F7FA',
   },
   border: {
-    primary: '#aeaeae'
+    primary: '#aeaeae',
   },
   text: {
-      primary: '#ffffff',
-      secondary: '#5b5b5b',
-      error: '#d6306a',
-      special: '#27bc64'
-  }
+    primary: '#ffffff',
+    secondary: '#5b5b5b',
+    error: '#d6306a',
+    special: '#27bc64',
+  },
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Platform} from 'react-native';
+import {Platform, SafeAreaView, View} from 'react-native';
 import {BottomTabBar, BottomTabBarProps} from '@react-navigation/bottom-tabs';
 import styled from 'styled-components/native';
 import {BlurView} from '@react-native-community/blur';
@@ -10,6 +10,10 @@ interface BlurredBottomTabBarProps {
   blurRadius?: number;
   bottomTabBarProps: BottomTabBarProps;
 }
+
+export const SafeAreaBottom = styled(SafeAreaView)`
+  flex: 0;
+`;
 
 const BlurredBottomTabBarWrapper = styled(BlurView)`
   position: absolute;
@@ -30,8 +34,12 @@ export const BlurredBottomTabBar: React.FC<BlurredBottomTabBarProps> = ({
       blurAmount={blurAmount}
       blurRadius={blurRadius}>
       <BottomTabBar {...bottomTabBarProps} />
+      <SafeAreaBottom />
     </BlurredBottomTabBarWrapper>
   ) : (
-    <BottomTabBar {...bottomTabBarProps} />
+    <View>
+      <BottomTabBar {...bottomTabBarProps} />
+      <SafeAreaBottom />
+    </View>
   );
 };

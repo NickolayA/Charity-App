@@ -1,4 +1,4 @@
-import {Platform, Animated, Dimensions} from 'react-native';
+import {Platform, Animated} from 'react-native';
 import {Button} from 'react-native-elements';
 import {ScreenContainer} from '../../../сomponents/ScreenContainer';
 import styled from 'styled-components/native';
@@ -7,7 +7,7 @@ import {FontFamilyVariants} from '../../../Constants';
 export const SignInWrapper = styled(ScreenContainer)`
   justify-content: space-between;
   background-color: ${({theme}) => theme.colors.bg.secondary};
-  padding-bottom: ${({theme}) => theme.spaces[2]};
+  padding-bottom: ${({theme}) => Platform.OS === 'ios' ? theme.spaces[4] : theme.spaces[3]};
   position: absolute;
   right: 0;
   left: 0;
