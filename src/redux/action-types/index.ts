@@ -12,3 +12,7 @@ export enum VideoCardsType {
 export enum ProfileActionType {
   UPDATE = 'update',
 }
+
+export enum CheckingAccountActionType {
+  SEARCH_BY_INPUT = 'search_by_input',
+}

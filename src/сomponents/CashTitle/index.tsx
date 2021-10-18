@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {Text} from 'react-native';
 import {getLocalization} from '../../services/localization';
 import {FontFamilyVariants} from '../../Constants';
 
@@ -8,6 +7,7 @@ interface CashTitleProps {
   currencyName: string;
   currencyAmount: number;
   size?: string;
+  color?: string;
 }
 
 const getDecimalAmountPart = (amount: number): string => {
@@ -34,6 +34,7 @@ export const CashTitle: React.FC<CashTitleProps> = ({
   currencyName,
   currencyAmount,
   size,
+  color,
 }) => {
   const IntegerAmountPart = styled.Text`
     font-size: ${({theme}) => size || theme.sizes[3]};
@@ -50,8 +51,12 @@ export const CashTitle: React.FC<CashTitleProps> = ({
 
   return (
     <CashTitleWrapper>
-      <IntegerAmountPart>{integerAmount}</IntegerAmountPart>
-      <DecimalAmountPart>.{decimalAmount}</DecimalAmountPart>
+      <IntegerAmountPart style={color && {color}}>
+        {integerAmount}
+      </IntegerAmountPart>
+      <DecimalAmountPart style={color && {color}}>
+        .{decimalAmount}
+      </DecimalAmountPart>
     </CashTitleWrapper>
   );
 };

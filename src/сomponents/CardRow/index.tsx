@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {ImageSourcePropType} from 'react-native';
+import {ImageSourcePropType, View} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import styled, {ThemeContext} from 'styled-components/native';
 import {Theme} from '../../theme';
@@ -13,6 +13,10 @@ export interface CardRowProps {
   title: string;
   subtitle: string;
   amount: number;
+  titleColor?: string;
+  subtitleColor?: string;
+  amountColor?: string;
+  leftSideIcon?: any;
   icon?: ImageSourcePropType;
   action?: (navigation: any) => void;
   showChevron?: boolean;
@@ -35,9 +39,11 @@ const CardRowChildrenWrapper = styled.View`
 
 const CardRowLeftPartContent = styled(ListItem.Content)`
   flex: 0.5;
+  flex-direction: row;
+  justify-content: flex-start;
 `;
 
-const CardRowTitleContainer = styled.View`
+const CardRowTitleWrapper = styled.View`
   flex-direction: row;
   align-items: center;
 `;
@@ -46,10 +52,19 @@ const CardRowTitleIcon = styled.Image`
   margin-left: ${({theme}) => theme.spaces[0]};
 `;
 
+const CardRowLeftPartIcons = styled.Image`
+  align-self: center;
+  margin-right: ${({theme}) => theme.spaces[1]};
+`;
+
 export const CardRow: React.FC<CardRowProps> = ({
   title,
   subtitle,
   amount,
+  titleColor,
+  subtitleColor,
+  amountColor,
+  leftSideIcon,
   icon,
   action,
   showChevron = true,
@@ -70,20 +85,29 @@ export const CardRow: React.FC<CardRowProps> = ({
         onPressIn={() => setIsPressed(true)}
         onPressOut={() => setIsPressed(false)}>
         <CardRowLeftPartContent>
-          <CardRowTitleContainer>
-            <CardTitle>{title}</CardTitle>
-            {icon && <CardRowTitleIcon source={icon} width height />}
-          </CardRowTitleContainer>
-          <CardSubtitle numberOfLines={1} ellipsizedMode="tail">
-            {subtitle}
-          </CardSubtitle>
+          {leftSideIcon && <CardRowLeftPartIcons source={leftSideIcon} />}
+          <View>
+            <CardRowTitleWrapper>
+              <CardTitle style={titleColor && {color: titleColor}}>
+                {title}
+              </CardTitle>
+              {icon && <CardRowTitleIcon source={icon} width height />}
+            </CardRowTitleWrapper>
+            <CardSubtitle
+              style={subtitleColor && {color: subtitleColor}}
+              numberOfLines={1}
+              ellipsizedMode="tail">
+              {subtitle}
+            </CardSubtitle>
+          </View>
         </CardRowLeftPartContent>
         <ListItem.Content right>
-          <CardRowTitleContainer>
+          <CardRowTitleWrapper>
             <CashTitle
               currencyName="USD"
               currencyAmount={amount}
-              size={theme.sizes[2]}
+              size={theme.sizes[3]}
+              color={amountColor}
             />
             {showChevron && (
               <ListItem.Chevron
@@ -91,7 +115,7 @@ export const CardRow: React.FC<CardRowProps> = ({
                 size={parseInt(theme.sizes[3])}
               />
             )}
-          </CardRowTitleContainer>
+          </CardRowTitleWrapper>
         </ListItem.Content>
       </CardListItem>
       {children && <CardRowChildrenWrapper>{children}</CardRowChildrenWrapper>}
