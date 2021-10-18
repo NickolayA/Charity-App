@@ -42,8 +42,8 @@ export const createAppNavigationScreenOptions = ({
     tabBarStyle: {
       borderTopColor: '#666666',
       backgroundColor: Platform.OS === 'ios' ? 'transparent' : 'white',
-      paddingBottom: 30,
-      height: 80,
+      paddingBottom: 20,
+      height: 70,
     },
     headerShown: false,
   };

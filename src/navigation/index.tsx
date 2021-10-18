@@ -5,12 +5,13 @@ import {SignInContainer} from '../screens/SignIn';
 import {useSelector} from 'react-redux';
 import {State} from '../redux/reducers';
 import {AuthStates} from '../Constants';
+import { NavigationTheme } from './options/navigationContainerTheme';
 
 export const Navigator: React.FC = () => {
   const authState = useSelector<State, string>(state => state.auth);
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={NavigationTheme}>
       {authState === AuthStates.AuthFail || authState === AuthStates.NoAuth || authState === AuthStates.Logging ? (
         <SignInContainer />
       ) : (

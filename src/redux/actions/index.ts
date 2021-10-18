@@ -2,6 +2,7 @@ import {
   AuthActionType,
   CheckingAccountActionType,
   ProfileActionType,
+  SavingAccountActionType,
   VideoCardsType,
 } from '../action-types';
 
@@ -45,3 +46,10 @@ interface SearchByBusinessNameAction {
 }
 
 export type CheckingAccountAction = SearchByBusinessNameAction;
+
+interface SearchByInputAction {
+  type: SavingAccountActionType.SEARCH_BY_INPUT;
+  payload: string;
+}
+
+export type SavingAccountAction = SearchByInputAction;
