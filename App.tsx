@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StatusBar, Platform} from 'react-native';
 import styled, {ThemeProvider} from 'styled-components/native';
+import SplashScreen from 'react-native-splash-screen';
 import {theme} from './src/theme';
 import {Navigator} from './src/navigation';
 import {Provider} from 'react-redux';
@@ -14,17 +15,20 @@ export const SafeAreaTop = styled(SafeAreaView)`
 `;
 
 const App = () => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       {Platform.OS === 'android' && (
         <StatusBar backgroundColor={theme.colors.bg.primary} />
       )}
       <SafeAreaTop edges={['top']}>
-      <PersistGate persistor={persistedStore}>
-        <Provider store={store}>
-          <Navigator />
-        </Provider>
-      </PersistGate>
+        <PersistGate persistor={persistedStore}>
+          <Provider store={store}>
+            <Navigator />
+          </Provider>
+        </PersistGate>
       </SafeAreaTop>
     </ThemeProvider>
   );
