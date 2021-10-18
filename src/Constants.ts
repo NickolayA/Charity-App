@@ -7,7 +7,7 @@ export enum RouteNames {
   Checking = 'Checking',
   Savings = 'Savings',
   SignIn = 'SignIn',
-  Profile = 'Profile'
+  Profile = 'Profile',
 }
 
 export enum FontFamilyVariants {
@@ -35,5 +35,5 @@ export enum CardTypes {
 export enum TransactionTypes {
   Deposit,
   SpecialDeposit,
-  Withdraw
+  Withdraw,
 }
