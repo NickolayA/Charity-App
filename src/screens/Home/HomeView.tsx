@@ -9,6 +9,7 @@ import {GreetingByDateIndicator} from '../../сomponents/GreetingByDateIndicator
 import {GoodnessCardProps} from '../../сomponents/GoodnessCard';
 
 import HeartLogo from '../../assets/images/logo.png';
+
 export type HomeViewProps = {userFirstName: string} & {
   cards: Array<
     (AccountsOverviewCardProps | GoodnessCardProps) & {type: CardTypes}
@@ -43,15 +44,15 @@ export const HomeView: React.FC<HomeViewProps> = ({
         <Image source={HeartLogo} />
       </Header>
       <HomeViewFlatList
-        pagingEnabled={true}
         onViewableItemsChanged={onItemsChanged}
         ListHeaderComponent={
           <GreetingByDateIndicator userFirstName={userFirstName} />
         }
         data={cards}
-        renderItem={item => renderFlatListItem(item)} 
+        renderItem={item => renderFlatListItem(item)}
         showsVerticalScrollIndicator={false}
-        />
+        viewabilityConfig={{itemVisiblePercentThreshold: 100}}
+      />
     </ScreenContainer>
   );
 };

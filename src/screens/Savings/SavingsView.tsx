@@ -40,7 +40,7 @@ const GraphImage = styled.Image`
 
 const AdditionalInfoWrapper = styled.View`
   margin-horizontal: ${({theme}) => theme.spaces[2]}
-  margin-top: ${({theme}) => theme.spaces[1]};
+  margin-top: ${({theme}) => theme.spaces[2]};
 `;
 
 const AdditionalInfoTextWrapper = styled.View`
