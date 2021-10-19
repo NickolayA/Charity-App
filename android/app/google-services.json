@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "946481840618",
+    "project_id": "traineeapp-329421",
+    "storage_bucket": "traineeapp-329421.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:946481840618:android:5850222c53a1f26e017293",
+        "android_client_info": {
+          "package_name": "com.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "946481840618-shfh5i5c55ptjplemhjn3voo8mcnlp7e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdn0Fm8vwdmDMRW4KTwxBuxwfQwzt22mE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "946481840618-shfh5i5c55ptjplemhjn3voo8mcnlp7e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
