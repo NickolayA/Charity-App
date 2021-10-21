@@ -2,7 +2,7 @@ name: Distribute
 
 on:
   push:
-    branches: [ feature/bug-fixes ]
+    branches: [ 'feature/bug-fixes' ]
 
 jobs:
   distribute:
