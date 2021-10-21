@@ -1,24 +1,23 @@
-name: Distribute
+name: Distribute to firebase
 
 on:
   push:
-    branches: [ 'feature/bug-fixes' ]
+    branches: [ master ]
 
 jobs:
   distribute:
-    runs-on: macOS-latest
-
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - uses: actions/setup-ruby@v1
         with:
-          ruby-version: '2.6'
-      
-      - name: Install bundle
-        run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
-      
-      - name: Distribute app with 🔥 App Distribution 🚀
-        run: bundle exec fastlane beta
+          ruby-version: '2.7'
+      - name: setup fastlane
+        run: bundle install && gem install fastlane
+      - name: distribute to firebase
+        working-directory: ./android
+        run: npm install && sudo fastlane beta
+        env:
+          FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+          GROUPS: ${{ secrets.GROUPS }}
