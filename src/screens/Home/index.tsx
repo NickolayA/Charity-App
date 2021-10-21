@@ -14,9 +14,11 @@ import {
   pauseActionCreator,
   playActionCreator,
 } from '../../redux/action-creators';
+import { ProfileType } from '../../redux/reducers/profile';
 
 export const HomeContainer: React.FC<ScreenContainerModel> = () => {
   const cardsState = useSelector<State, CardsType>(state => state.cards);
+  const profileState = useSelector<State, ProfileType>(state => state.profile);
 
   const dispatch = useDispatch();
 
@@ -44,7 +46,7 @@ export const HomeContainer: React.FC<ScreenContainerModel> = () => {
 
   return (
     <HomeView
-      userFirstName="Danny"
+      userFirstName={profileState.fullName}
       cards={cardsState}
       renderFlatListItem={renderFlatListItem}
       onItemsChanged={onItemsChanged}

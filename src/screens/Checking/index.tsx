@@ -85,6 +85,8 @@ export const CheckingContainer: React.FC<ScreenContainerModel> = ({route}) => {
   const filterByInput = (input: string) =>
     dispatch(searchByInputCheckingAccountActionCreator(input));
 
+  const onExitRoute = () => filterByInput('');
+
   const renderFlatListItem = ({
     item,
   }: {
@@ -115,6 +117,7 @@ export const CheckingContainer: React.FC<ScreenContainerModel> = ({route}) => {
     <CheckingView
       screenTitle={route.name}
       screenSubtitle={screenSubtitle}
+      onExitRoute={onExitRoute}
       totalAvailableCash={checkingAccountService.totalAvailableCash}
       transactions={transactionsByDate}
       renderFlatListItem={renderFlatListItem}

@@ -14,6 +14,7 @@ import {AccountsOverviewCardProps} from '../../сomponents/AccountsOverviewCard'
 
 import {CardRow} from '../../сomponents/CardRow';
 import {FontFamilyVariants} from '../../Constants';
+import { CardWrapper } from '../../сomponents/CardWrapper';
 
 type AccountsViewProps = ScreenViewModel & {data: AccountsOverviewCardProps} & {
   circleButtonsData: Array<MoneyActionButtonProps>;
@@ -26,9 +27,13 @@ const MoneyActionButtonsWrapper = styled.View`
   padding-horizontal: ${({theme}) => theme.spaces[2]};
 `;
 
-const AccountsCardRowWrapper = styled.View`
+const AccountsCardRowWrapper = styled(CardWrapper)`
   margin-top: ${({theme}) => theme.spaces[2]};
-  margin-horizontal: ${({theme}) => theme.spaces[1]};
+  margin-bottom: 0;
+  margin-horizontal: ${({theme}) => parseInt(theme.spaces[1]) +  5}px;
+  padding-top: 3px;
+  padding-bottom: 1px;
+  background-color: ${({theme}) => theme.colors.bg.navigation};
 `;
 
 const Triangle = styled.View`

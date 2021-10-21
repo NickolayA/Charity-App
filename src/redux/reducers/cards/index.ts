@@ -84,6 +84,8 @@ export const cardsReducer = (
       return changeVideoPlaybackState(state, false, action.payload);
     case VideoCardsType.PAUSE:
       return changeVideoPlaybackState(state, true, action.payload);
+    case VideoCardsType.PAUSE_ALL:
+      return stopAllVideos(state);
     default:
       return state;
   }
@@ -104,3 +106,13 @@ const changeVideoPlaybackState = (
   }
   return state;
 };
+
+const stopAllVideos = (state: CardsType) => {
+  const newState = state.map(el => ({...el}));
+  for(let s of newState) {
+    if (s.type === CardTypes.GoodnessCard && s.sourceType === CardSourceTypes.Video) {
+      s.paused = true;
+    }
+  }
+  return newState;
+}

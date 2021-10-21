@@ -7,13 +7,14 @@ import {FontFamilyVariants} from '../../../Constants';
 export const SignInWrapper = styled(ScreenContainer)`
   justify-content: space-between;
   background-color: ${({theme}) => theme.colors.bg.secondary};
-  padding-bottom: ${({theme}) => Platform.OS === 'ios' ? theme.spaces[4] : theme.spaces[3]};
+  padding-bottom: ${({theme}) =>
+    Platform.OS === 'ios' ? theme.spaces[4] : theme.spaces[3]};
   position: absolute;
   right: 0;
   left: 0;
   top: 0;
   bottom: 0;
-  padding-top: ${Platform.OS === 'android' ? "30px" : "110px"};
+  padding-top: ${Platform.OS === 'android' ? '30px' : '110px'};
 `;
 
 export const SignInScreenLabel = styled.Text`
@@ -60,7 +61,7 @@ export const AuthFailedMessage = styled.Text`
 
 export const SignInButtonsWrapper = styled.View`
   padding-horizontal: ${({theme}) => theme.spaces[2]};
-  flex: 0.85;
+  flex: 0.41;
   justify-content: space-between;
 `;
 
@@ -87,7 +88,7 @@ export const AnimatedSignInButtonContainer = styled(Animated.View)`
 
 export const SignInButton = styled(Button).attrs(({theme}) => ({
   containerStyle: {
-    flex: 1,
+    flex: 0.6,
   },
   titleStyle: {
     color: theme.colors.text.primary,
@@ -98,7 +99,6 @@ export const SignInButton = styled(Button).attrs(({theme}) => ({
     backgroundColor: theme.colors.bg.primary,
     borderRadius: 25,
     paddingVertical: parseInt(theme.sizes[1]),
-    transform: [{translateY: 100}],
     height: 40,
   },
   disabledTitleStyle: {

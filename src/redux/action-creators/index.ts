@@ -35,6 +35,10 @@ export const pauseActionCreator = (videoCardIndex: number) => {
   return {type: VideoCardsType.PAUSE, payload: videoCardIndex};
 };
 
+export const pauseAllActionCreator = () => ({
+  type: VideoCardsType.PAUSE_ALL,
+});
+
 export const updateProfileDataActionCreator = (newData: ProfileType) => {
   return {type: ProfileActionType.UPDATE, payload: newData};
 };

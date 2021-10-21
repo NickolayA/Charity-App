@@ -33,7 +33,10 @@ export const createAppNavigationScreenOptions = ({
   return {
     tabBarIcon: ({focused}) => {
       return focused ? (
-        <Icon source={icon.active} />
+        <Icon
+          source={icon.active}
+          style={{tintColor: theme.colors.icons.active}}
+        />
       ) : (
         <Icon source={icon.inactive} />
       );

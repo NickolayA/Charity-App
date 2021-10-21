@@ -31,7 +31,11 @@ interface PauseAction {
   payload: number;
 }
 
-export type VideoCardsAction = PlayAction | PauseAction;
+interface PauseAllAction {
+  type: VideoCardsType.PAUSE_ALL;
+}
+
+export type VideoCardsAction = PlayAction | PauseAction | PauseAllAction;
 
 interface UpdateAction {
   type: ProfileActionType.UPDATE;

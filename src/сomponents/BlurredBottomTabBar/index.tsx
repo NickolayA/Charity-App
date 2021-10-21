@@ -23,8 +23,8 @@ const Spacer = styled.View`
 `;
 
 export const BlurredBottomTabBar: React.FC<BlurredBottomTabBarProps> = ({
-  blurType = 'light',
-  blurAmount = 10,
+  blurType = 'xlight',
+  blurAmount = 100,
   blurRadius = 10,
   bottomTabBarProps,
 }) => {

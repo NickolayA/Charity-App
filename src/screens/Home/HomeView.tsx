@@ -26,10 +26,10 @@ const HomeViewFlatList = styled(FlatList).attrs({
     paddingBottom: Platform.OS === 'android' ? height / 6 : height / 4,
   },
   ListHeaderComponentStyle: {
-    marginBottom: 10,
+    marginBottom: 19,
   },
 })`
-  margin-horizontal: ${({theme}) => theme.spaces[1]};
+  margin-horizontal: ${({theme}) => parseInt(theme.spaces[1]) + 5}px;
 `;
 
 export const HomeView: React.FC<HomeViewProps> = ({

@@ -38,9 +38,9 @@ export const CardTopBar: React.FC<CardTopBarProps> = ({
       <ListItem.Content>
         <CardTitle>{title}</CardTitle>
         <CardSubtitleWrapper>
-          <CardSubtitle>{charityName}</CardSubtitle>
+          <CardSubtitle>{charityName} </CardSubtitle>
           <SubtitleDivider></SubtitleDivider>
-          <CardSubtitle>{time}</CardSubtitle>
+          <CardSubtitle> {time}</CardSubtitle>
         </CardSubtitleWrapper>
       </ListItem.Content>
     </CardListItem>
