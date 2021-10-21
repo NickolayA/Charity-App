@@ -40,13 +40,14 @@ export const UserAvatar: React.FC = () => {
     setUserMenuVisible(true);
   };
 
-  console.log(profileState.avatar)
-
   return (
     <View>
       <Avatar
         rounded
-        source={typeof profileState.avatar !== 'number' ? {uri: profileState.avatar} : AvatarIcon}
+        source={
+          (Platform.OS === 'android' && AvatarIcon) ||
+          (profileState.avatar ? {uri: profileState.avatar} : AvatarIcon)
+        }
         onPress={showUserMenu}
       />
       <Modal visible={userMenuVisible} transparent>

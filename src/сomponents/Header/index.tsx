@@ -32,6 +32,7 @@ const ScreenControlWrapper = styled(TouchableOpacity).attrs({
 const ChildrenWrapper = styled.View`
   flex: 1;
   align-items: center;
+  text-align: center;
 `;
 
 const AvatarWrapper = styled.View`
@@ -54,6 +55,8 @@ export const Header: React.FC<{onExitRoute?: () => void}> = ({
     const unsubscribe = navigation.addListener('tabPress', e => {
       dispatch(pauseAllActionCreator());
     });
+
+    return unsubscribe;
   }, [navigation]);
 
   return (
