@@ -38,8 +38,7 @@ export const BlurredBottomTabBar: React.FC<BlurredBottomTabBarProps> = ({
     </BlurredBottomTabBarWrapper>
   ) : (
     <View>
-      <BottomTabBar {...bottomTabBarProps} />
-      <Spacer />
+      <BottomTabBar {...bottomTabBarProps}><Spacer/> </BottomTabBar>
     </View>
   );
 };

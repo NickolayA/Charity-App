@@ -51,7 +51,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
         data={cards}
         renderItem={item => renderFlatListItem(item)}
         showsVerticalScrollIndicator={false}
-        viewabilityConfig={{itemVisiblePercentThreshold: 100}}
+        viewabilityConfig={
+          Platform.OS === 'ios'
+            ? {itemVisiblePercentThreshold: 100}
+            : {itemVisiblePercentThreshold: 75}
+        }
       />
     </ScreenContainer>
   );
