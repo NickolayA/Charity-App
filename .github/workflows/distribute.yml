@@ -2,7 +2,8 @@ name: Distribute to firebase
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
 
 jobs:
   distribute:
