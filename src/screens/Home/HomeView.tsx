@@ -9,6 +9,7 @@ import {GreetingByDateIndicator} from '../../сomponents/GreetingByDateIndicator
 import {GoodnessCardProps} from '../../сomponents/GoodnessCard';
 
 import HeartLogo from '../../assets/images/logo.png';
+
 export type HomeViewProps = {userFirstName: string} & {
   cards: Array<
     (AccountsOverviewCardProps | GoodnessCardProps) & {type: CardTypes}
@@ -25,10 +26,10 @@ const HomeViewFlatList = styled(FlatList).attrs({
     paddingBottom: Platform.OS === 'android' ? height / 6 : height / 4,
   },
   ListHeaderComponentStyle: {
-    marginBottom: 10,
+    marginBottom: 19,
   },
 })`
-  margin-horizontal: ${({theme}) => theme.spaces[1]};
+  margin-horizontal: ${({theme}) => parseInt(theme.spaces[1]) + 5}px;
 `;
 
 export const HomeView: React.FC<HomeViewProps> = ({
@@ -43,15 +44,19 @@ export const HomeView: React.FC<HomeViewProps> = ({
         <Image source={HeartLogo} />
       </Header>
       <HomeViewFlatList
-        pagingEnabled={true}
         onViewableItemsChanged={onItemsChanged}
         ListHeaderComponent={
           <GreetingByDateIndicator userFirstName={userFirstName} />
         }
         data={cards}
-        renderItem={item => renderFlatListItem(item)} 
+        renderItem={item => renderFlatListItem(item)}
         showsVerticalScrollIndicator={false}
-        />
+        viewabilityConfig={
+          Platform.OS === 'ios'
+            ? {itemVisiblePercentThreshold: 100}
+            : {itemVisiblePercentThreshold: 75}
+        }
+      />
     </ScreenContainer>
   );
 };

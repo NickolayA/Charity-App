@@ -11,10 +11,6 @@ interface BlurredBottomTabBarProps {
   bottomTabBarProps: BottomTabBarProps;
 }
 
-export const SafeAreaBottom = styled(SafeAreaView)`
-  flex: 0;
-`;
-
 const BlurredBottomTabBarWrapper = styled(BlurView)`
   position: absolute;
   bottom: 0px;
@@ -22,9 +18,13 @@ const BlurredBottomTabBarWrapper = styled(BlurView)`
   right: 0px;
 `;
 
+const Spacer = styled.View`
+  height: ${({theme}) => theme.spaces[3]};
+`;
+
 export const BlurredBottomTabBar: React.FC<BlurredBottomTabBarProps> = ({
-  blurType = 'light',
-  blurAmount = 10,
+  blurType = 'xlight',
+  blurAmount = 100,
   blurRadius = 10,
   bottomTabBarProps,
 }) => {
@@ -34,12 +34,11 @@ export const BlurredBottomTabBar: React.FC<BlurredBottomTabBarProps> = ({
       blurAmount={blurAmount}
       blurRadius={blurRadius}>
       <BottomTabBar {...bottomTabBarProps} />
-      <SafeAreaBottom />
+      <Spacer />
     </BlurredBottomTabBarWrapper>
   ) : (
     <View>
-      <BottomTabBar {...bottomTabBarProps} />
-      <SafeAreaBottom />
+      <BottomTabBar {...bottomTabBarProps}><Spacer/> </BottomTabBar>
     </View>
   );
 };

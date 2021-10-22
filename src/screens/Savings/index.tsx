@@ -17,11 +17,14 @@ export const SavingsContainer: React.FC<ScreenContainerModel> = ({route}) => {
   const filterByInput = (input: string) =>
     dispatch(searchByInputSavingAccountActionCreator(input));
 
+  const onExitRoute = () => filterByInput('');
+
   const screenSubtitle = route.params.saving.subtitle;
   return (
     <SavingsView
       screenTitle={route.name}
       screenSubtitle={screenSubtitle}
+      onExitRoute={onExitRoute}
       totalAvailableCash={savingAccountService.totalAvailableCash}
       totalInterest={savingAccountService.totalInterest}
       goodnessPoints={savingAccountService.goodnessPoints}

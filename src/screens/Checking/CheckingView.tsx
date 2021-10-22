@@ -9,19 +9,21 @@ import {CardHeader} from '../../сomponents/CardHeader';
 import {ScreenContainer} from '../../сomponents/ScreenContainer';
 import {SearchSection} from '../../сomponents/SearchSection';
 import {CardWrapper} from '../../сomponents/CardWrapper';
-import {
-  TransactionsByDate,
-} from '../../services/checking-account';
+import {TransactionsByDate} from '../../services/checking-account';
 
 export type CheckingViewProps = ScreenViewModel & {
   totalAvailableCash: number;
   transactions: TransactionsByDate;
   renderFlatListItem: ({item}) => JSX.Element;
-  filterHandler: (name: string) => void; 
+  filterHandler: (name: string) => void;
 };
 
 const CheckingViewWrapper = styled.View`
-  margin-horizontal: ${({theme}) => theme.spaces[1]};
+  margin-horizontal: ${({theme}) => parseInt(theme.spaces[1]) + 5}px;
+`;
+
+const CheckingViewCardWrapper = styled(CardWrapper)`
+  border-width: 0px;
 `;
 
 const CheckingViewFlatList = styled(FlatList).attrs(({theme}) => ({
@@ -38,32 +40,37 @@ const {height} = Dimensions.get('window');
 export const CheckingView: React.FC<CheckingViewProps> = ({
   screenTitle,
   screenSubtitle,
+  onExitRoute,
   totalAvailableCash,
   transactions,
   renderFlatListItem,
-  filterHandler
+  filterHandler,
 }) => {
   return (
     <ScreenContainer>
-      <Header>
+      <Header onExitRoute={onExitRoute}>
         <View>
           <ScreenTitle>{screenTitle}</ScreenTitle>
           {screenSubtitle && <ScreenSubtitle>{screenSubtitle}</ScreenSubtitle>}
         </View>
       </Header>
       <CheckingViewWrapper>
-        <CardHeader
-          amount={totalAvailableCash}
-          subtitle={'Total available cash'}
-        />
-        <SearchSection inputHandler={filterHandler}/>
-        <CardWrapper>
+        <CheckingViewCardWrapper>
           <CheckingViewFlatList
             data={transactions}
             renderItem={renderFlatListItem}
             showsVerticalScrollIndicator={false}
+            ListHeaderComponent={
+              <View>
+                <CardHeader
+                  amount={totalAvailableCash}
+                  subtitle={'Total available cash'}
+                />
+                <SearchSection inputHandler={filterHandler} />
+              </View>
+            }
           />
-        </CardWrapper>
+        </CheckingViewCardWrapper>
       </CheckingViewWrapper>
     </ScreenContainer>
   );

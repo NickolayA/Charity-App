@@ -15,7 +15,7 @@ const SearchInput = styled(Input).attrs(({theme}) => ({
   containerStyle: {
     width: '70%',
     paddingHorizontal: 0,
-    height: 40
+    height: 40,
   },
   inputContainerStyle: {
     borderRadius: parseInt(theme.sizes[3]),
@@ -50,15 +50,16 @@ const SearchButton = styled(Button).attrs(({theme}) => ({
   },
 }))``;
 
-export const SearchSection: React.FC<{inputHandler: (name: string) => void}> =
-  ({inputHandler}) => {
-    return (
-      <SearchSectionWrapper>
-        <SearchInput
-          placeholder="Search transactions"
-          onChangeText={inputHandler}
-        />
-        <SearchButton title="Filter By" type="outline" />
-      </SearchSectionWrapper>
-    );
-  };
+export const SearchSection: React.FC<{
+  inputHandler: (name: string) => void;
+}> = ({inputHandler}) => {
+  return (
+    <SearchSectionWrapper>
+      <SearchInput
+        placeholder="Search transactions"
+        onChangeText={inputHandler}
+      />
+      <SearchButton title="Filter By" type="outline" />
+    </SearchSectionWrapper>
+  );
+};

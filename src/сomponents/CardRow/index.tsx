@@ -88,7 +88,7 @@ export const CardRow: React.FC<CardRowProps> = ({
         onPressOut={() => setIsPressed(false)}>
         <CardRowLeftPartContent>
           {leftSideIcon && <CardRowLeftPartIcons source={leftSideIcon} />}
-          <View>
+          <View style={{flex: 1}}>
             <CardRowTitleWrapper>
               <CardTitle
                 style={[

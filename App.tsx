@@ -33,7 +33,6 @@ const App = () => {
         backgroundColor={theme.colors.bg.primary}
         logoImage={SplashScreenLogo}
         isLoaded={appLoaded}
-        translucent={true}
         disableBackgroundImage={true}>
         <SafeAreaTop edges={['top']}>
           <PersistGate persistor={persistedStore}>

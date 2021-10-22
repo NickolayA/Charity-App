@@ -1,4 +1,5 @@
 export enum RouteNames {
+  App = 'App',
   Home = 'Home',
   Accounts = 'Accounts',
   Giving = 'Giving',

@@ -9,9 +9,12 @@ export type AccountsOverviewCardProps = CardHeaderProps & {
   cashes: Array<CardRowProps>;
 };
 
-export const AccountsOverviewCard: React.FC<AccountsOverviewCardProps> = (
-  {title, subtitle, amount, cashes},
-) => {
+export const AccountsOverviewCard: React.FC<AccountsOverviewCardProps> = ({
+  title,
+  subtitle,
+  amount,
+  cashes,
+}) => {
   const cachesArrLength = cashes.length;
 
   return (
@@ -20,8 +23,8 @@ export const AccountsOverviewCard: React.FC<AccountsOverviewCardProps> = (
 
       {cashes.map((cash, index) => {
         return (
-          <View>
-            <CardRow {...cash} key={index + cash.title} />
+          <View key={index + cash.title}>
+            <CardRow {...cash} />
             {cachesArrLength - 1 !== index && <Divider />}
           </View>
         );

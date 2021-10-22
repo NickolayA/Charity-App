@@ -7,6 +7,7 @@ export enum AuthActionType {
 export enum VideoCardsType {
   PLAY = 'play',
   PAUSE = 'pause',
+  PAUSE_ALL = 'pause_all'
 }
 
 export enum ProfileActionType {
@@ -14,9 +15,9 @@ export enum ProfileActionType {
 }
 
 export enum CheckingAccountActionType {
-  SEARCH_BY_INPUT = 'search_by_input',
+  SEARCH_BY_INPUT = 'search_checking_by_input',
 }
 
 export enum SavingAccountActionType {
-  SEARCH_BY_INPUT = 'search_by_input',
+  SEARCH_BY_INPUT = 'search_saving_by_input',
 }
