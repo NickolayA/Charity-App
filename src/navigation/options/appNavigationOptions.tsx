@@ -1,7 +1,8 @@
 import React, {useContext} from 'react';
 import type {Theme} from '../../theme';
 import {ThemeContext} from 'styled-components/native';
-import {Image as Icon, Platform} from 'react-native';
+import {Image as TabIcon, Platform} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {BottomTabNavigationOptions} from '@react-navigation/bottom-tabs';
 
 import AccountIcon from '../../assets/images/accounts.png';
@@ -14,13 +15,13 @@ import AccountActiveIcon from '../../assets/images/accounts_filled.png';
 import CardsActiveIcon from '../../assets/images/cards_filled.png';
 import GivingActiveIcon from '../../assets/images/giving_filled.png';
 import HomeActiveIcon from '../../assets/images/home_filled.png';
-import PaymentActiveIcon from '../../assets/images/payment_filled.png';
+import {RouteNames} from '../../Constants';
 
 const tabNameIcon: {[key: string]: {active: any; inactive: any}} = {
   Home: {active: HomeActiveIcon, inactive: HomeIcon},
   Accounts: {active: AccountActiveIcon, inactive: AccountIcon},
   Giving: {active: GivingActiveIcon, inactive: GivingIcon},
-  Payments: {active: PaymentActiveIcon, inactive: PaymentIcon},
+  Payments: {active: 'cash', inactive: 'cash-outline'},
   Cards: {active: CardsActiveIcon, inactive: CardsIcon},
 };
 
@@ -33,12 +34,22 @@ export const createAppNavigationScreenOptions = ({
   return {
     tabBarIcon: ({focused}) => {
       return focused ? (
-        <Icon
-          source={icon.active}
-          style={{tintColor: theme.colors.icons.active}}
-        />
+        route.name === RouteNames.Payments ? (
+          <Icon
+            name={icon.active}
+            color={theme.colors.icons.active}
+            size={25}
+          />
+        ) : (
+          <TabIcon
+            source={icon.active}
+            style={{tintColor: theme.colors.icons.active}}
+          />
+        )
+      ) : route.name === RouteNames.Payments ? (
+        <Icon name={icon.inactive} size={25} />
       ) : (
-        <Icon source={icon.inactive} />
+        <TabIcon source={icon.inactive} />
       );
     },
     tabBarActiveTintColor: theme.colors.icons.active,

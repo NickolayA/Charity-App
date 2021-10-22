@@ -4,6 +4,7 @@ import {
   Image,
   TouchableOpacity,
   Platform,
+  View,
 } from 'react-native';
 import Video from 'react-native-video';
 import {VideoPlayerAndroid} from '../../VideoPlayerAndroid';
@@ -30,6 +31,10 @@ const CardVideo = styled(Video)`
   height: 207px;
 `;
 
+const CardImage = styled(Image)`
+  width: 100%;
+`;
+
 export const CardMainImage: React.FC<CardMainImageProps> = ({
   image,
   video,
@@ -43,7 +48,7 @@ export const CardMainImage: React.FC<CardMainImageProps> = ({
   let videoRef = useRef();
 
   return sourceType === CardSourceTypes.Image ? (
-    <Image source={image} />
+    <CardImage source={image} />
   ) : (
     <TouchableOpacity
       onPress={() => {
