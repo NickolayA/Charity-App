@@ -45,8 +45,9 @@ export const UserAvatar: React.FC = () => {
       <Avatar
         rounded
         source={
-          (Platform.OS === 'android' && AvatarIcon) ||
-          (profileState.avatar ? {uri: profileState.avatar} : AvatarIcon)
+          typeof profileState.avatar !== 'number'
+            ? {uri: profileState.avatar}
+            : AvatarIcon
         }
         onPress={showUserMenu}
       />
