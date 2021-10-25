@@ -2,12 +2,6 @@ import React, {useCallback} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {ScreenContainerModel} from '../../models/ScreenContainerModel'
 import {HomeView} from './HomeView'
-import {
-	AccountsOverviewCard,
-	AccountsOverviewCardProps,
-} from '../../сomponents/AccountsOverviewCard'
-import {GoodnessCard, GoodnessCardProps} from '../../сomponents/GoodnessCard'
-import {CardTypes} from '../../Constants'
 import {State} from '../../redux/reducers'
 import {CardsType} from '../../redux/reducers/cards'
 import {
@@ -36,19 +30,10 @@ export const HomeContainer: React.FC<ScreenContainerModel> = () => {
 		}
 	}, [])
 
-	const renderFlatListItem = ({item, index}): JSX.Element => {
-		return item.type === CardTypes.AccountsOverviewCard ? (
-			<AccountsOverviewCard {...(item as AccountsOverviewCardProps)} />
-		) : (
-			<GoodnessCard {...(item as GoodnessCardProps)} cardIndex={index}/>
-		)
-	}
-
 	return (
 		<HomeView
 			userFirstName={profileState.fullName}
 			cards={cardsState}
-			renderFlatListItem={renderFlatListItem}
 			onItemsChanged={onItemsChanged}
 		/>
 	)

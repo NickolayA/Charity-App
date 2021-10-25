@@ -4,9 +4,9 @@ import styled from 'styled-components/native'
 import {Header} from '../../сomponents/Header'
 import {ScreenContainer} from '../../сomponents/ScreenContainer'
 import {CardTypes} from '../../Constants'
-import {AccountsOverviewCardProps} from '../../сomponents/AccountsOverviewCard'
+import {AccountsOverviewCard, AccountsOverviewCardProps} from '../../сomponents/AccountsOverviewCard'
 import {GreetingByDateIndicator} from '../../сomponents/GreetingByDateIndicator/GreetingByDateIndicator'
-import {GoodnessCardProps} from '../../сomponents/GoodnessCard'
+import {GoodnessCard, GoodnessCardProps} from '../../сomponents/GoodnessCard'
 
 import HeartLogo from '../../assets/images/logo.png'
 
@@ -15,7 +15,6 @@ export type HomeViewProps = {userFirstName: string} & {
     (AccountsOverviewCardProps | GoodnessCardProps) & {type: CardTypes}
   >;
 } & {
-  renderFlatListItem: ({item, index}) => JSX.Element;
   onItemsChanged: ({changedItems}) => void;
 };
 
@@ -31,11 +30,18 @@ const HomeViewFlatList = styled(FlatList).attrs({
 })`
   margin-horizontal: ${({theme}) => parseInt(theme.spaces[1]) + 5}px;
 `
+const renderFlatListItem = ({item, index}): JSX.Element => {
+	return item.type === CardTypes.AccountsOverviewCard ? (
+		<AccountsOverviewCard {...(item as AccountsOverviewCardProps)} />
+	) : (
+		<GoodnessCard {...(item as GoodnessCardProps)} cardIndex={index}/>
+	)
+}
 
 export const HomeView: React.FC<HomeViewProps> = ({
 	userFirstName,
 	cards,
-	renderFlatListItem,
+
 	onItemsChanged,
 }) => {
 	return (
