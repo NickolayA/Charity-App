@@ -1,6 +1,6 @@
-import {ProfileAction} from '../../actions';
-import AvatarIcon from '../../../assets/images/oval.png';
-import {ProfileActionType} from '../../action-types';
+import {ProfileAction} from '../../actions'
+import AvatarIcon from '../../../assets/images/oval.png'
+import {ProfileActionType} from '../../action-types'
 
 export type ProfileType = {
   avatar: typeof AvatarIcon;
@@ -9,13 +9,13 @@ export type ProfileType = {
 };
 
 export const profileReducer = (
-  state = {avatar: AvatarIcon, fullName: 'user', dateOfBirth: Date.now()},
-  action: ProfileAction,
+	state = {avatar: AvatarIcon, fullName: 'user', dateOfBirth: Date.now()},
+	action: ProfileAction,
 ): ProfileType => {
-  switch (action.type) {
-    case ProfileActionType.UPDATE:
-      return {...state, ...action.payload};
-    default:
-      return state;
-  }
-};
+	switch (action.type) {
+	case ProfileActionType.UPDATE:
+		return {...state, ...action.payload}
+	default:
+		return state
+	}
+}

@@ -1,10 +1,10 @@
 import {
-  AuthActionType,
-  CheckingAccountActionType,
-  ProfileActionType,
-  SavingAccountActionType,
-  VideoCardsType,
-} from '../action-types';
+	AuthActionType,
+	CheckingAccountActionType,
+	ProfileActionType,
+	SavingAccountActionType,
+	VideoCardsType,
+} from '../action-types'
 
 interface SignInAction {
   type: AuthActionType.SIGNIN;

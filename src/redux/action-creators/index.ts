@@ -1,52 +1,52 @@
 import {
-  AuthActionType,
-  VideoCardsType,
-  ProfileActionType,
-  CheckingAccountActionType,
-  SavingAccountActionType,
-} from '../action-types';
-import {Dispatch} from 'redux';
-import {AuthAction} from '../actions';
-import {ProfileType} from '../reducers/profile';
+	AuthActionType,
+	VideoCardsType,
+	ProfileActionType,
+	CheckingAccountActionType,
+	SavingAccountActionType,
+} from '../action-types'
+import {Dispatch} from 'redux'
+import {AuthAction} from '../actions'
+import {ProfileType} from '../reducers/profile'
 
 export const signInActionCreator = (
-  email: string,
-  password: string,
-  signInService: (email: string, password: string) => Promise<string>,
+	email: string,
+	password: string,
+	signInService: (email: string, password: string) => Promise<string>,
 ) => {
-  return async (dispatch: Dispatch<AuthAction>) => {
-    dispatch({type: AuthActionType.LOGGING});
-    const res = await signInService(email, password);
-    dispatch({type: AuthActionType.SIGNIN, payload: res});
-  };
-};
+	return async (dispatch: Dispatch<AuthAction>) => {
+		dispatch({type: AuthActionType.LOGGING})
+		const res = await signInService(email, password)
+		dispatch({type: AuthActionType.SIGNIN, payload: res})
+	}
+}
 
 export const signOutActionCreator = () => {
-  return (dispatch: Dispatch<AuthAction>) => {
-    dispatch({type: AuthActionType.SIGNOUT});
-  };
-};
+	return (dispatch: Dispatch<AuthAction>) => {
+		dispatch({type: AuthActionType.SIGNOUT})
+	}
+}
 
 export const playActionCreator = (videoCardIndex: number) => {
-  return {type: VideoCardsType.PLAY, payload: videoCardIndex};
-};
+	return {type: VideoCardsType.PLAY, payload: videoCardIndex}
+}
 
 export const pauseActionCreator = (videoCardIndex: number) => {
-  return {type: VideoCardsType.PAUSE, payload: videoCardIndex};
-};
+	return {type: VideoCardsType.PAUSE, payload: videoCardIndex}
+}
 
 export const pauseAllActionCreator = () => ({
-  type: VideoCardsType.PAUSE_ALL,
-});
+	type: VideoCardsType.PAUSE_ALL,
+})
 
 export const updateProfileDataActionCreator = (newData: ProfileType) => {
-  return {type: ProfileActionType.UPDATE, payload: newData};
-};
+	return {type: ProfileActionType.UPDATE, payload: newData}
+}
 
 export const searchByInputCheckingAccountActionCreator = (input: string) => {
-  return {type: CheckingAccountActionType.SEARCH_BY_INPUT, payload: input};
-};
+	return {type: CheckingAccountActionType.SEARCH_BY_INPUT, payload: input}
+}
 
 export const searchByInputSavingAccountActionCreator = (input: string) => {
-  return {type: SavingAccountActionType.SEARCH_BY_INPUT, payload: input};
-};
+	return {type: SavingAccountActionType.SEARCH_BY_INPUT, payload: input}
+}

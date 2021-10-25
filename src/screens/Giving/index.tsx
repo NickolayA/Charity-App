@@ -1,6 +1,6 @@
-import React from 'react';
-import {GivingView} from './GivingView';
+import React from 'react'
+import {GivingView} from './GivingView'
 
 export const GivingContainer: React.FC = () => {
-  return <GivingView />;
-};
+	return <GivingView />
+}
