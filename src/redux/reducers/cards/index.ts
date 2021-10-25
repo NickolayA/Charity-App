@@ -106,7 +106,7 @@ const changeVideoPlaybackState = (
     state[payload].sourceType === CardSourceTypes.Video &&
     state[payload].paused !== newValue
   ) {
-    const newState = [...state];
+    const newState = state.map(el => ({...el}));
     newState[payload].paused = newValue;
     return newState;
   }

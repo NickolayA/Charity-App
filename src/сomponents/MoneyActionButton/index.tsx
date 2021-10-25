@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import {CardSubtitle} from '../CardSubtitle';
 
 export interface MoneyActionButtonProps {
-  icon: string;
+  icon: any;
   subtitle: string;
 }
 

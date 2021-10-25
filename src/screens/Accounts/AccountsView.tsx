@@ -74,7 +74,7 @@ export const AccountsView: React.FC<AccountsViewProps> = ({
       {data.cashes.map((cash, index) => (
         <AccountsCardRowWrapper key={index + cash.title}>
           {cash.specialMessage ? (
-            <CardRow {...cash} cardRowHeight={90}>
+            <CardRow {...cash} cardRowHeight={91}>
               <Triangle />
               <SpecialMessage> {cash.specialMessage}</SpecialMessage>
             </CardRow>

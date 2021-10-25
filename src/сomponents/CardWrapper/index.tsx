@@ -8,7 +8,7 @@ export const CardWrapper = styled.View`
       ? theme.sizes[1]
       : parseInt(theme.sizes[1]) - 5 + 'px'};
   margin-bottom: ${({theme}) => theme.spaces[2]};
-  border-width: 0.2px;
+  border-width: 0.21px;
   border-color: ${({theme}) => theme.colors.border.primary};
   padding-bottom: 0.15px;
 `;

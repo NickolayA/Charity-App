@@ -36,11 +36,11 @@ export const HomeContainer: React.FC<ScreenContainerModel> = () => {
     }
   }, []);
 
-  const renderFlatListItem = ({item}): JSX.Element => {
+  const renderFlatListItem = ({item, index}): JSX.Element => {
     return item.type === CardTypes.AccountsOverviewCard ? (
       <AccountsOverviewCard {...(item as AccountsOverviewCardProps)} />
     ) : (
-      <GoodnessCard {...(item as GoodnessCardProps)} />
+      <GoodnessCard {...(item as GoodnessCardProps)} cardIndex={index}/>
     );
   };
 

@@ -15,7 +15,7 @@ export type HomeViewProps = {userFirstName: string} & {
     (AccountsOverviewCardProps | GoodnessCardProps) & {type: CardTypes}
   >;
 } & {
-  renderFlatListItem: ({item}) => JSX.Element;
+  renderFlatListItem: ({item, index}) => JSX.Element;
   onItemsChanged: ({changedItems}) => void;
 };
 
@@ -49,7 +49,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           <GreetingByDateIndicator userFirstName={userFirstName} />
         }
         data={cards}
-        renderItem={item => renderFlatListItem(item)}
+        renderItem={renderFlatListItem}
         showsVerticalScrollIndicator={false}
         viewabilityConfig={
           Platform.OS === 'ios'

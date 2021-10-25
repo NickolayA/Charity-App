@@ -4,6 +4,6 @@ import {FontFamilyVariants} from '../../Constants';
 
 export const CardTitle = styled(ListItem.Title)`
   font-family: ${FontFamilyVariants.Regular};
-  font-size: ${({theme}) => theme.sizes[2]};
+  font-size: ${({theme}) => parseInt(theme.sizes[2]) - 1}px;
   include-font-padding: false;
 `;

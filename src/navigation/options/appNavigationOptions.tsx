@@ -9,7 +9,6 @@ import AccountIcon from '../../assets/images/accounts.png';
 import CardsIcon from '../../assets/images/cards.png';
 import GivingIcon from '../../assets/images/giving.png';
 import HomeIcon from '../../assets/images/home.png';
-import PaymentIcon from '../../assets/images/payment.png';
 
 import AccountActiveIcon from '../../assets/images/accounts_filled.png';
 import CardsActiveIcon from '../../assets/images/cards_filled.png';

@@ -15,9 +15,12 @@ export interface CardMainImageProps {
   video?: string;
   sourceType: CardSourceTypes;
   paused?: boolean;
+  cardIndex?: number;
 }
 
 import PlayIcon from '../../../assets/images/play.png';
+import { useDispatch } from 'react-redux';
+import { pauseActionCreator, playActionCreator } from '../../../redux/action-creators';
 
 const TouchableVideoDynamic = styled.TouchableOpacity`
   position: absolute;
@@ -39,7 +42,10 @@ export const CardMainImage: React.FC<CardMainImageProps> = ({
   video,
   sourceType,
   paused,
+  cardIndex,
 }) => {
+  const dispatch = useDispatch();
+
   const [muted, setMuted] = useState<boolean>(true);
   const [fullScreen, setFullScreen] = useState<boolean>(false);
   const [controls, setControls] = useState<boolean>(false);
@@ -72,7 +78,17 @@ export const CardMainImage: React.FC<CardMainImageProps> = ({
           muted={muted}
           paused={paused}
           resizeMode="contain"
+          repeat={true}
           ref={ref => (videoRef = ref)}
+          onFullscreenPlayerWillDismiss={() => {
+            console.log("Paused is", paused, videoRef.paused);
+            if (!paused) {
+              dispatch(playActionCreator(cardIndex))
+              videoRef.paused = false;
+            } else {
+              dispatch(pauseActionCreator(cardIndex));
+            }
+          }}
         />
       ) : (
         <VideoPlayerAndroid

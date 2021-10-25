@@ -15,6 +15,7 @@ export type GoodnessCardProps = {
   cardDescribingText: string;
   sourceType: CardSourceTypes;
   buttonAction?: () => void;
+  cardIndex?: number;
 } & CardTopBarProps &
   CardMainImageProps;
 
@@ -56,6 +57,7 @@ export const GoodnessCard: React.FC<GoodnessCardProps> = ({
   sourceType,
   buttonAction,
   paused,
+  cardIndex
 }) => {
   return (
     <CardWrapper>
@@ -70,6 +72,7 @@ export const GoodnessCard: React.FC<GoodnessCardProps> = ({
         video={video}
         sourceType={sourceType}
         paused={paused}
+        cardIndex={cardIndex}
       />
       <CardDescribingText>{cardDescribingText}</CardDescribingText>
       <CardActionButton

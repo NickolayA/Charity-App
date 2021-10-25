@@ -29,6 +29,7 @@ const CardRowWrapper = styled.View`
   background-color: ${({theme}) => theme.colors.bg.secondary};
   border-radius: ${({theme}) => theme.sizes[1]};
   justify-content: center;
+  width: 100%;
 `;
 
 const CardRowChildrenWrapper = styled.View`
