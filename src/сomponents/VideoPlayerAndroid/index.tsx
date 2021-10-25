@@ -50,7 +50,7 @@ export const VideoPlayerAndroid: React.FC<VideoPlayerProps> = props => {
 			<Modal>
 				<ControlButtonsWrapper>
 					<TouchableWithoutFeedback
-						onPress={() => props.mute}>
+						onPress={() => props.mute()}>
 						<AudioControlButton
 							name={props.muted ? 'volume-mute-outline' : 'volume-high-outline'}
 							size={30}

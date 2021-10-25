@@ -70,8 +70,8 @@ export const savingAccountService: {
 	filterTransactionsByInput: (input: string): Array<SavingAccountDataItem> => {
 		return savingAccountData.filter(
 			t =>
-				t.depositType.startsWith(input) ||
-        t.amount.toString().startsWith(input),
+				t.depositType.trim().startsWith(input) ||
+        t.amount.toString().trim().startsWith(input),
 		)
 	},
 	getTransactionsPerDate: (

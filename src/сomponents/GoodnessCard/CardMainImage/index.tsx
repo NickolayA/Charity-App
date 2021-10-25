@@ -47,7 +47,7 @@ export const CardMainImage: React.FC<CardMainImageProps> = ({
 	const [controls, setControls] = useState<boolean>(false)
 
 	const mute = () => setMuted(mute => !mute)
-	const hideFullScreen = () => setFullScreen(true)
+	const hideFullScreen = () => setFullScreen(false)
 
 	let videoRef = useRef<Video>()
 

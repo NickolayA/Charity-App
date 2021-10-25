@@ -100,10 +100,10 @@ export const checkingAccountService: {
 	): Array<CheckingAccountDataItem> => {
 		return transactions.filter(
 			t =>
-				t.business.startsWith(input) ||
-        t.amount.toString().startsWith(input) ||
-        t.location?.startsWith(input) ||
-        t.paymentMethod.startsWith(input),
+				t.business.trim().startsWith(input) ||
+        t.amount.toString().trim().startsWith(input) ||
+        t.location?.trim().startsWith(input) ||
+        t.paymentMethod.trim().startsWith(input),
 		)
 	},
 	getTransactionsPerDate: (
