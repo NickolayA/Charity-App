@@ -30,20 +30,26 @@ const testData: CardsType = [
         title: 'Checking',
         subtitle: 'Main account (...0353)',
         amount: 1500.2,
-        action: navigation => navigation.navigate(RouteNames.Checking, {checking: {subtitle: 'Main account (...0353)'}}),
+        action: navigation =>
+          navigation.navigate(RouteNames.Checking, {
+            checking: {subtitle: 'Main account (...0353)'},
+          }),
       },
       {
         title: 'Savings',
         subtitle: 'Buy a house (...4044)',
         amount: 5000.2,
-        action: navigation => navigation.navigate(RouteNames.Savings, {saving: {subtitle: 'Buy a house (...4044)'}}),
+        action: navigation =>
+          navigation.navigate(RouteNames.Savings, {
+            saving: {subtitle: 'Buy a house (...4044)'},
+          }),
         specialMessage: 'Savings is up 3% from last month',
       },
       {
         title: 'Goodness',
         subtitle: 'Cash Rewards',
         amount: 500.4,
-        icon: HeartIcon
+        icon: HeartIcon,
       },
     ],
   },
@@ -109,10 +115,13 @@ const changeVideoPlaybackState = (
 
 const stopAllVideos = (state: CardsType) => {
   const newState = state.map(el => ({...el}));
-  for(let s of newState) {
-    if (s.type === CardTypes.GoodnessCard && s.sourceType === CardSourceTypes.Video) {
+  for (let s of newState) {
+    if (
+      s.type === CardTypes.GoodnessCard &&
+      s.sourceType === CardSourceTypes.Video
+    ) {
       s.paused = true;
     }
   }
   return newState;
-}
+};

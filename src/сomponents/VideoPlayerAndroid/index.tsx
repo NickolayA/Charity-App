@@ -34,10 +34,14 @@ const FullScreenControlButton = styled(Icon)`
 `;
 
 type VideoPlayerProps = {
+  source: string;
   muted: boolean;
-  setMuted: (fn: (muted: boolean) => boolean) => boolean;
+  mute: () => void;
   fullScreen: boolean;
-  setFullScreen: (fullScreen: boolean) => boolean;
+  setFullScreen: () => void;
+  controls: boolean;
+  paused: boolean;
+  resizeMode: string;
 };
 
 export const VideoPlayerAndroid: React.FC<VideoPlayerProps> = props => {
@@ -46,7 +50,7 @@ export const VideoPlayerAndroid: React.FC<VideoPlayerProps> = props => {
       <Modal>
         <ControlButtonsWrapper>
           <TouchableWithoutFeedback
-            onPress={() => props.setMuted(muted => !muted)}>
+            onPress={() => props.mute}>
             <AudioControlButton
               name={props.muted ? 'volume-mute-outline' : 'volume-high-outline'}
               size={30}
@@ -55,7 +59,7 @@ export const VideoPlayerAndroid: React.FC<VideoPlayerProps> = props => {
 
           <TouchableWithoutFeedback
             onPress={() => {
-              props.setFullScreen(false);
+              props.setFullScreen();
             }}>
             <FullScreenControlButton
               name="close-outline"

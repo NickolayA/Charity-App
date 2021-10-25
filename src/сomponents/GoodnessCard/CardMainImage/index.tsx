@@ -4,7 +4,6 @@ import {
   Image,
   TouchableOpacity,
   Platform,
-  View,
 } from 'react-native';
 import Video from 'react-native-video';
 import {VideoPlayerAndroid} from '../../VideoPlayerAndroid';
@@ -45,7 +44,10 @@ export const CardMainImage: React.FC<CardMainImageProps> = ({
   const [fullScreen, setFullScreen] = useState<boolean>(false);
   const [controls, setControls] = useState<boolean>(false);
 
-  let videoRef = useRef();
+  const mute = () => setMuted(mute => !mute);
+  const hideFullScreen = () => setFullScreen(true);
+
+  let videoRef = useRef<Video>();
 
   return sourceType === CardSourceTypes.Image ? (
     <CardImage source={image} />
@@ -56,7 +58,7 @@ export const CardMainImage: React.FC<CardMainImageProps> = ({
           setFullScreen(true);
           setControls(true);
         } else {
-          videoRef.presentFullscreenPlayer();
+          (videoRef as unknown as Video).presentFullscreenPlayer();
         }
       }}>
       <TouchableVideoDynamic onPress={() => setMuted(muted => !muted)}>
@@ -75,9 +77,9 @@ export const CardMainImage: React.FC<CardMainImageProps> = ({
       ) : (
         <VideoPlayerAndroid
           source={video}
-          setMuted={setMuted}
+          mute={mute}
           fullScreen={fullScreen}
-          setFullScreen={setFullScreen}
+          setFullScreen={hideFullScreen}
           controls={controls}
           muted={muted}
           paused={paused}
